@@ -2,25 +2,25 @@ import logo from './logo.svg';
 import './App.css';
 
 const LightBulb = () => {
-  return <>lightbulb</>
+  return <div id="light-bulb"><div></div></div>
 }
 
 const Title = () => {
   return <div id="title">
-    <p>class Niko &#123;</p>
-    <h1>front-end developer</h1>
-    <p>&#125;;</p>
+    <p style={{alignSelf: "start"}}>class <span style={{color: "var(--primary-text-color)"}}>Niko</span> &#123;</p>
+    <h1>front-end <br/> <span style={{textShadow:"1px 1px var(--accent-color), -1px -1px var(--accent-color)", color: "var(--primary-color)"}}>developer</span></h1>
+    <p style={{alignSelf: "end"}}>&#125;;</p>
   </div>
 }
 
 const Home = () => {
   return <div id="home">
-    <div class="arrow-down">arrow down</div>
+    <div class="arrow-down"></div>
     <LightBulb/>
     <Nav/>
     <Title/>
     <Socials/>
-    <p>scrollDown()</p>
+    <p style={{gridArea: "scrolldown"}}>scrollDown()</p>
   </div>
 }
 
@@ -40,7 +40,7 @@ const Socials = () => {
     <ul>
       <li><a>in</a></li>
       <li><a>git</a></li>
-      <li><a>resume</a></li>
+      <li style={{color:"var(--accent-color)"}}><a>resume</a></li>
     </ul>
   </div>
 }
@@ -56,7 +56,7 @@ const SkillSelector = () => {
 
   let skills = ["JavaScript", "React"]
 
-  return <div id="skills">
+  return <div id="skill-selector">
       <h3>skills: [</h3>
       <ul>
         { skills.map( item => { return <li id={item}> {item} </li> }) }
@@ -70,7 +70,7 @@ const SkillDisplay = () => {
 }
 
 const Projects = () => {
-  return <div id="projects-wrapper">
+  return <div id="project-wrapper">
       <h2>/* projects */</h2>
       <ProjectDisplay/>
       <ProjectSelecter/>
@@ -80,9 +80,9 @@ const Projects = () => {
 const ProjectSelecter = () => {
   let projects = ["InstaScraper", "ROD"]
 
-  return <div id="projects">
+  return <div id="project-selector">
       <ul>
-        { projects.map( item => { return <li id={item}> {item} </li> }) }
+        { projects.map( item => { return <li id={item}> {item}, </li> }) }
       </ul>
       <p>],</p>
     </div>
@@ -108,17 +108,17 @@ const ProjectDisplay = () => {
 
 const Work = () => {
   return <div id="work-wrapper">
-    <h2>/* work */</h2>
-    <WorkSelecter/>
-    <WorkDisplay/>
-    <div class="arrow-right">-------------></div>
+      <h2>/* work */</h2>
+      <WorkSelecter/>
+      <WorkDisplay/>
+      <div class="arrow" style={{gridArea:"arrow"}}>-----------</div>
     </div>
 }
 
 const WorkSelecter = () => {
   let work = ["FishTank2021", "AirtimeHelicopters"]
   
-  return <div id="work">
+  return <div id="work-selector">
     <h3>work = [</h3>
     <ul>
     { work.map( item => { return <li id={item}> {item} </li> }) }
@@ -135,13 +135,14 @@ const Bio = () => {
   const bio = "” Hey, I’m Niko. I’m a front-end developer with a passion for building compelling designs. Addicted to art, music and programming. From Hawai’i, now in San Diego, CA.“,"
   
   return <div id="bio">
-    <h3>bio :</h3>
-    {bio}
+    <div><h3>bio :</h3>
+    {bio}</div>
+    <div id="bio-pic">image here</div>
   </div>
 }
 
 const About = () => {
-  return <div id="about">
+  return <div id="about-wrapper">
     <h2>/* about */</h2>
     <Skills/>
     <Bio/>
@@ -151,11 +152,13 @@ const About = () => {
 const Contact = () => {
   return <div id="contact">
     <h2>/* Contact */</h2>
-    <h3>letsConnect()</h3>
-    <p>“ Looking for freelance projects but i’m open to any interesting opportunity, let’s get in touch! ”</p>
+    <div id="cta">
+      <h3>letsConnect()</h3>
+      <p>“ Looking for freelance projects but i’m open to any interesting opportunity, let’s get in touch! ”</p>
+    </div>
     <button>email()</button>
-    <div class="arrow-up"/>
-    <p>toTop()</p>
+    {/*<div class="arrow-up"/>*/}
+    {/*<p id="to-top">toTop()</p>*/}
     <Socials/>
   </div>
 }
