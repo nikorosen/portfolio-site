@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from 'react';
 
 const LightBulb = () => {
   return <div id="light-bulb"><div></div></div>
@@ -45,90 +46,114 @@ const Socials = () => {
   </div>
 }
 
-const Skills = () => {
+const Skills = ({selectedSkill, setSelectedSkill}) => {
   return <div id="skill-wrapper">
-    <SkillSelector/>
-    <SkillDisplay/>
+    <SkillSelector selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
+    <SkillDisplay selectedSkill={selectedSkill}/>
   </div>
 }
 
-const SkillSelector = () => {
+const SkillSelector = ({selectedSkill, setSelectedSkill}) => {
 
   let skills = ["JavaScript", "React"]
 
   return <div id="skill-selector">
       <h3>skills: [</h3>
       <ul>
-        { skills.map( item => { return <li id={item}> {item} </li> }) }
+        { skills.map( item => { return <li onMouseOver={(e) => {
+            console.log(e.target.id)
+            setSelectedSkill(e.target.id)
+            }} id={item}> {item} </li> }) }
       </ul>
       <p>],</p>
     </div>
 }
 
-const SkillDisplay = () => {
-  return <div id="skill-display">test-skill-display</div>
+const SkillDisplay = ({selectedSkill}) => {
+  return <div id="skill-display">{selectedSkill}</div>
 }
 
-const Projects = () => {
+const Projects = ({selectedProject, setSelectedProject}) => {
+  
+  let projects = { 
+    InstaScraper : 
+      {title: "InstaScraper", desc: "whatever", tech: "python3"},
+    InstaScraper2 :
+      {title: "InstaScraper2", desc: "whfffffatever", tech: "pytrrrhon3"}
+  }
+  
   return <div id="project-wrapper">
       <h2>/* projects */</h2>
-      <ProjectDisplay/>
-      <ProjectSelecter/>
+      <ProjectDisplay  projects={projects} selectedProject={selectedProject}/>
+      <ProjectSelecter projects={projects} selectedProject={selectedProject} setSelectedProject={setSelectedProject}/>
     </div>
 }
 
-const ProjectSelecter = () => {
-  let projects = ["InstaScraper", "ROD"]
+const ProjectSelecter = ({projects, setSelectedProject}) => {
 
   return <div id="project-selector">
       <ul>
-        { projects.map( item => { return <li id={item}> {item}, </li> }) }
+        { Object.keys(projects).map( (key, val) => { return <li onMouseOver={(e) => {
+            console.log(e.target.id)
+            setSelectedProject(e.target.id)
+            }} id={key}> {projects[key]['title']} </li> }) }
       </ul>
       <p>],</p>
     </div>
 }
 
-const ProjectDisplay = () => {
+const ProjectDisplay = ({projects, selectedProject}) => {
   return <div id="project-display">
     
     <div id="project-description">
       <h3>title:</h3>
-        <p>{/*props.title*/}</p> 
+        <p>{projects[selectedProject]['title']}</p> 
       <h4>desc:</h4>
-        <p> {/*props.desc*/} </p>
+        <p> {projects[selectedProject]['desc']} </p>
       <h4>tech: </h4> 
-        <p> {/*props.desc*/} </p>
+        <p> {projects[selectedProject]['tech']} </p>
     </div>
     <div id="project-icon">
-      display-project icon
+      {projects[selectedProject]['title']}
       <img></img>  
     </div>  
   </div>
 }
 
-const Work = () => {
+const Work = ({selectedWork, setSelectedWork}) => {
   return <div id="work-wrapper">
       <h2>/* work */</h2>
-      <WorkSelecter/>
-      <WorkDisplay/>
+      <WorkSelecter selectedWork={selectedWork} setSelectedWork={setSelectedWork}/>
+      <WorkDisplay selectedWork={selectedWork}/>
       <div class="arrow" style={{gridArea:"arrow"}}>-----------</div>
     </div>
 }
 
-const WorkSelecter = () => {
-  let work = ["FishTank2021", "AirtimeHelicopters"]
+const WorkSelecter = ({selectedWork, setSelectedWork}) => {
+  
+  let work = ["FishTank2021", "Airtime Helicopters"]
+
+  useEffect(() => {
+    console.log("updated")
+  }, [selectedWork]);
   
   return <div id="work-selector">
     <h3>work = [</h3>
-    <ul>
-    { work.map( item => { return <li id={item}> {item} </li> }) }
-    </ul>
+      <ul>
+        {work.map( item => 
+          { return <li onMouseOver={(e) => {
+            console.log(e.target.id)
+            setSelectedWork(e.target.id)
+            }
+          } id={item}> {item} </li> }
+        )}
+      </ul>
     <p>];</p>
   </div>
 }
 
-const WorkDisplay = () => {
-  return <div id="work-display">test-work-display</div>
+const WorkDisplay = ({selectedWork}) => {
+  return <div id="work-display">{selectedWork}</div>
 }
 
 const Bio = () => {
@@ -141,10 +166,10 @@ const Bio = () => {
   </div>
 }
 
-const About = () => {
+const About = ({selectedSkill, setSelectedSkill, display}) => {
   return <div id="about-wrapper">
     <h2>/* about */</h2>
-    <Skills/>
+    <Skills selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} display={display}/>
     <Bio/>
     </div>
 }
@@ -164,12 +189,25 @@ const Contact = () => {
 }
 
 function App() {
+
+  const [selectedWork, setSelectedWork] = useState();
+  const [selectedSkill, setSelectedSkill] = useState("Javascript");
+  const [selectedProject, setSelectedProject] = useState("InstaScraper");
+  const [selectedAboutDisplay, setSelectedDisplay]  = useState("skills");
+
   return (
     <div className="App">
       <Home/>
-      <Work/>
-      <About/>
-      <Projects/>
+      <Work 
+        selectedWork={selectedWork} 
+        setSelectedWork={setSelectedWork}/>
+      <About 
+        selectedSkill={selectedSkill} 
+        setSelectedSkill={setSelectedSkill} 
+        display={selectedAboutDisplay}/>
+      <Projects 
+        selectedProject={selectedProject} 
+        setSelectedProject={setSelectedProject}/>
       <Contact/>
     </div>
   );
