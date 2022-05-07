@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
+import logo2 from './assets/logo192.png'
+import nani from './assets/nani.jpg'
 
 const LightBulb = () => {
   return <div id="light-bulb"><div></div></div>
@@ -46,114 +48,129 @@ const Socials = () => {
   </div>
 }
 
-const Skills = ({selectedSkill, setSelectedSkill}) => {
+const Skills = (props) => {
+
+  let skills = {
+    "JavaScript": {
+      url: nani 
+    },
+    "React": {
+      url: logo2
+    } };
+
   return <div id="skill-wrapper">
-    <SkillSelector selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
-    <SkillDisplay selectedSkill={selectedSkill}/>
+    <SkillSelector skills={skills} setSelectedSkill={props.setSelectedSkill} />
+    <SkillDisplay skills={skills} selectedSkill={props.selectedSkill}/>
   </div>
 }
 
-const SkillSelector = ({selectedSkill, setSelectedSkill}) => {
-
-  let skills = ["JavaScript", "React"]
-
+const SkillSelector = (props) => {
   return <div id="skill-selector">
       <h3>skills: [</h3>
       <ul>
-        { skills.map( item => { return <li onMouseOver={(e) => {
+        { Object.keys(props.skills).map( key => { return <li onMouseOver={(e) => {
             console.log(e.target.id)
-            setSelectedSkill(e.target.id)
-            }} id={item}> {item} </li> }) }
+            props.setSelectedSkill(e.target.id)
+            }} id={key}> {key} </li> }) }
       </ul>
       <p>],</p>
     </div>
 }
 
-const SkillDisplay = ({selectedSkill}) => {
-  return <div id="skill-display">{selectedSkill}</div>
+const SkillDisplay = (props) => {
+  return <div id="skill-display">{<img src={props.skills[props.selectedSkill]['url']}></img>}</div>
 }
 
-const Projects = ({selectedProject, setSelectedProject}) => {
+const Projects = (props) => {
   
   let projects = { 
     InstaScraper : 
-      {title: "InstaScraper", desc: "whatever", tech: "python3"},
+      { title: "InstaScraper", 
+        desc: "whatever", 
+        tech: "python3", 
+        url: nani },
     InstaScraper2 :
-      {title: "InstaScraper2", desc: "whfffffatever", tech: "pytrrrhon3"}
+      { title: "InstaScraper2",
+        desc: "whfffffatever", 
+        tech: "pytrrrhon3", 
+        url: logo2 }
   }
   
   return <div id="project-wrapper">
       <h2>/* projects */</h2>
-      <ProjectDisplay  projects={projects} selectedProject={selectedProject}/>
-      <ProjectSelecter projects={projects} selectedProject={selectedProject} setSelectedProject={setSelectedProject}/>
+      <ProjectDisplay  projects={projects} selectedProject={props.selectedProject}/>
+      <ProjectSelecter projects={projects} setSelectedProject={props.setSelectedProject}/>
     </div>
 }
 
-const ProjectSelecter = ({projects, setSelectedProject}) => {
+const ProjectSelecter = (props) => {
 
   return <div id="project-selector">
       <ul>
-        { Object.keys(projects).map( (key, val) => { return <li onMouseOver={(e) => {
+        { Object.keys(props.projects).map( (key) => { return <li onMouseOver={(e) => {
             console.log(e.target.id)
-            setSelectedProject(e.target.id)
-            }} id={key}> {projects[key]['title']} </li> }) }
+            props.setSelectedProject(e.target.id)
+            }} id={key}> {props.projects[key]['title']} </li> }) }
       </ul>
       <p>],</p>
     </div>
 }
 
-const ProjectDisplay = ({projects, selectedProject}) => {
+const ProjectDisplay = (props) => {
   return <div id="project-display">
     
     <div id="project-description">
       <h3>title:</h3>
-        <p>{projects[selectedProject]['title']}</p> 
+        <p>{props.projects[props.selectedProject]['title']}</p> 
       <h4>desc:</h4>
-        <p> {projects[selectedProject]['desc']} </p>
+        <p> {props.projects[props.selectedProject]['desc']} </p>
       <h4>tech: </h4> 
-        <p> {projects[selectedProject]['tech']} </p>
+        <p> {props.projects[props.selectedProject]['tech']} </p>
     </div>
     <div id="project-icon">
-      {projects[selectedProject]['title']}
-      <img></img>  
+      {<img src={props.projects[props.selectedProject]['url']}></img>}
     </div>  
   </div>
 }
 
 const Work = ({selectedWork, setSelectedWork}) => {
+
+  let work = {
+    "FishTank2021": nani,
+    "Airtime Helicopters": logo2
+  }
+
   return <div id="work-wrapper">
       <h2>/* work */</h2>
-      <WorkSelecter selectedWork={selectedWork} setSelectedWork={setSelectedWork}/>
-      <WorkDisplay selectedWork={selectedWork}/>
+      <WorkSelecter work={work} selectedWork={selectedWork} setSelectedWork={setSelectedWork}/>
+      <WorkDisplay work={work} selectedWork={selectedWork}/>
       <div class="arrow" style={{gridArea:"arrow"}}>-----------</div>
     </div>
 }
 
-const WorkSelecter = ({selectedWork, setSelectedWork}) => {
-  
-  let work = ["FishTank2021", "Airtime Helicopters"]
+const WorkSelecter = (props) => {
 
   useEffect(() => {
     console.log("updated")
-  }, [selectedWork]);
+  }, [props.selectedWork]);
   
   return <div id="work-selector">
     <h3>work = [</h3>
       <ul>
-        {work.map( item => 
+        {Object.keys(props.work).map( key => 
           { return <li onMouseOver={(e) => {
             console.log(e.target.id)
-            setSelectedWork(e.target.id)
+            props.setSelectedWork(e.target.id)
             }
-          } id={item}> {item} </li> }
+          } id={key}> {key} </li> }
         )}
       </ul>
     <p>];</p>
   </div>
 }
 
-const WorkDisplay = ({selectedWork}) => {
-  return <div id="work-display">{selectedWork}</div>
+const WorkDisplay = (props) => {
+  return <div id="work-display"><img src={props.work[props.selectedWork]}></img></div>
 }
 
 const Bio = () => {

@@ -29,6 +29,10 @@ ul {
   list-style-type: none;
 }
 
+li:hover {
+  opacity: 0.8;
+}
+
 #nav {
   grid-area: nav;
   min-width: 25em;
@@ -221,6 +225,11 @@ ul {
   border: 0.2em var(--accent-color) solid; 
 }
 
+#skill-display img {
+  height: 100%;
+  width: 100%;
+}
+
 #bio {
   grid-area: content;
   display: none;
@@ -263,6 +272,11 @@ ul {
   text-align: start;
   
   align-items: center; 
+}
+
+#project-display img {
+  height: 100%;
+  width: 100%;
 }
 
 #project-selector ul {
