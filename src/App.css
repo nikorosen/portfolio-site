@@ -153,6 +153,7 @@ li:hover {
     "work display arrow"
   ;  
   row-gap: 5em;
+  column-gap: 5em;
 
   height: 100vh;
   min-width: 40em;
@@ -176,6 +177,10 @@ li:hover {
   height: 25%;
   width: 95%;
   border: 0.2em var(--accent-color) solid; 
+}
+
+#work-display img {
+  height: 100%;
 }
 
 #about-wrapper {
@@ -379,7 +384,45 @@ display: inline-block;
   grid-area: arrow;
 }
 
+.link-button {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.15em var(--accent-color) solid;
+  color: var(--accent-color);
+  background-color: transparent;
+  height: 4em;
+  width: 15em;
+  grid-area: email;
+  justify-self: center;
+  font-size: 1.5em;
+}
 
+.link-button:hover {
+  opacity: 0.8;
+}
+  
+.link-button::after {
+  content: '';
+  position: absolute;
+  box-sizing: border-box;
+  width: 15em;
+  height: 4em;
+  border: 0.15em var(--primary-text-color) solid;
+  transform: translate3d(-0.8em, -0.8em, 0);
+  z-index: -1;
+}
+
+.pop-up {
+  position: fixed;
+  display: inline-block;
+  width: 90vw;
+  height: 90vh;
+  background-color: blue;
+  z-index: 2;
+  left: 5vw;
+  top: 5vh;
+}
 
 
 
