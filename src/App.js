@@ -96,7 +96,7 @@ const SkillDisplay = (props) => {
   return <div id="skill-display"><img src={icon_js}></img></div>
 }
 
-const Work = ({selectedWork, setSelectedWork}) => {
+const Work = (props) => {
 
   let work = { 
     FishTank2021 : 
@@ -122,7 +122,7 @@ const Work = ({selectedWork, setSelectedWork}) => {
       { title: "TELSIM",
         desc: `➤ Developed a simulator in Python 3 that models the Subaru telescope control system to test observation procedures and train system operators, greatly reducing operating costs.
         ➤ Collaborated with an international team of software engineers, astronomers and operators to identify and implement key software components.
-        ➤ Worked with version control software in a Linux environment `,
+        `,
         role: "Software Developer", 
         tech: "Python3, Git", 
         url: logo2 },
@@ -172,28 +172,53 @@ const Work = ({selectedWork, setSelectedWork}) => {
 
   return <div id="work-wrapper">
       <h2>/* work */</h2>
-      <WorkSelecter work={work} selectedWork={selectedWork} setSelectedWork={setSelectedWork}/>
-      <WorkDisplay work={work} selectedWork={selectedWork}/>
-      <WorkInfo work={work} selectedWork={selectedWork}/>
+      <WorkSelecter 
+        work={work} 
+        selectedWork={props.selectedWork} 
+        setSelectedWork={props.setSelectedWork}
+        />
+      <WorkDisplay work={work} selectedWork={props.selectedWork}/>
+      <WorkInfo work={work} selectedWork={props.selectedWork}/>
       <div class="arrow-down" style={{gridArea:"arrow"}}></div>
     </div>
 }
 
 const WorkSelecter = (props) => {
 
+  const prevItem = React.useRef();
+  const itemsRef = React.useRef([]);
+
   useEffect(() => {
+    itemsRef.current = itemsRef.current.slice(0, props.work.length);
     console.log('current:' + props.selectedWork)
-  }, [props.selectedWork]);
+  }, [props.selectedWork, props.work]);
   
+
+  // toggle 'active' class to ON on current work selection
+  // toggle 'active' class to OFF on previous work selection
+  const handleClick = (e, index) => {
+    if (prevItem.current != null)
+      prevItem.current.classList.toggle('active');
+    prevItem.current = e.target;
+
+    props.setSelectedWork(e.target.id);
+    
+    console.log(itemsRef.current[index])
+    itemsRef.current[index].classList.toggle('active');
+  }
+
   return <div id="work-selector">
     <h3>Some things I've done</h3>
     <p>work = [</p>
       <ul>
-        {Object.keys(props.work).map( key => 
-          { return <li onMouseOver={(e) => {
-            props.setSelectedWork(e.target.id)
-            }
-          } id={key}> {key} </li> }
+        {Object.keys(props.work).map( (key, index) => 
+          { return <li 
+            className='' 
+            key={index}
+            ref = {el => {itemsRef.current[index] = el
+            console.log(itemsRef.current[index])}}
+            onClick={(e) => {handleClick(e, index)}} 
+            id={key}> {key} </li> }
         )}
       </ul>
     <p>];</p>
@@ -270,15 +295,15 @@ const WorkDisplay = (props) => {
 
 const WorkInfo = (props) => {
   return <div id="work-info">
-  <h3>title:</h3>
+  <h4>title :</h4>
     <p>{props.selectedWork}</p> 
-    <h4>role:</h4>
+    <h4>role :</h4>
     <p> {props.work[props.selectedWork]['role']} </p>
-  <h4>desc:</h4>
+  <h4>desc :</h4>
     <p style={{height:"16em"}}> {props.work[props.selectedWork]['desc']} </p>
-  <h4>tech: </h4> 
+  <h4>tech : </h4> 
     <p> {props.work[props.selectedWork]['tech']} </p>
-  <h4>url:</h4>
+  <h4>url :</h4>
     <p> <a href={props.work[props.selectedWork]['projectUrl']}>View project</a> </p>
   
 </div>
@@ -316,7 +341,7 @@ display={display}/>*/}
     </div>
     
     <div id="skill-wrapper">
-    <h3>Some things I can do: </h3>
+    <h3>Some things I do: </h3>
     <ul id="skill-icons">
       <li><img src={icon_js}></img></li>
       <li><img src={icon_html}></img></li>
@@ -332,7 +357,7 @@ display={display}/>*/}
       <li><img src={icon_vscode}></img></li>
     </ul>
     </div>
-    <div className="line">line</div>
+    {/*<div className="line">line</div>*/}
     
     </div>
 }
@@ -360,16 +385,19 @@ function App() {
 
   const [selectedWork, setSelectedWork] = useState("FishTank2021");
   const [selectedSkill, setSelectedSkill] = useState("Javascript");
+  const [previousSelectedWork, setPreviousSelectedWork] = useState();
   const [selectedProject, setSelectedProject] = useState("InstaScraper");
   const [selectedAboutDisplay, setSelectedDisplay]  = useState("skills");
 
   return (
     <div className="App">
+      <div className="arrow"></div>
       <Nav/>
       <Home/>
       <Work 
         selectedWork={selectedWork} 
-        setSelectedWork={setSelectedWork}/>
+        setSelectedWork={setSelectedWork}
+        />
       <About 
         selectedSkill={selectedSkill} 
         setSelectedSkill={setSelectedSkill} 

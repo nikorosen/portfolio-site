@@ -47,9 +47,16 @@ ul {
   list-style-type: none;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 li:hover {
   opacity: 0.8;
 }
+
+
 
 #nav {
   position: fixed;
@@ -81,11 +88,6 @@ li:hover {
   z-index: 1;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 #socials ul {
   display: flex;
   flex-direction: row;
@@ -103,8 +105,8 @@ a {
   grid-template-columns: 5% 5% 80% 10%;
   grid-template-rows: 10% 80% 10%;
   grid-template-areas: 
-    "arrow      e  nav  lightbulb"
-    "arrow      e  title  sidebar"
+    "e      e  nav  lightbulb"
+    "e      e  title  sidebar"
     "scrolldown blank      socials  socials"
   ;  
 
@@ -131,12 +133,15 @@ a {
 }
 
 .arrow {
+  position: fixed;
+  top: 0;
+  left: 10%;
   background-color: var(--accent-color);
-  grid-area: arrow;
   display: flex;
-  height: 100%;
+  height: 50%;
   width: 0.2em;
   align-self: start;
+
 }
 
 .arrow::before {
@@ -224,11 +229,11 @@ a {
 
 #work-wrapper {
   display: grid;
-  grid-template-columns: 30% 40% 27.5% 2.5%;
+  grid-template-columns: 30% 40% 30%;
   grid-template-rows: 5% 90%;
   grid-template-areas: 
-    "head head head arrow"
-    "work display info arrow"
+    "head head head"
+    "work display info"
   ;  
 
   width: var(--section-width);
@@ -239,19 +244,18 @@ a {
   text-align: start;
 
   padding-bottom: 10em;
-  border: 1px red solid;
 }
 
 #work-wrapper h2 {
   grid-area: head;
   align-self: center;
   opacity: 0.1;
-  border: 1px red solid;
 }
 
 #work-selector {
   width: 100%;
-  border: 1px red solid;
+  height: 80%;
+  grid-area: work
 }
 
 #work-selector h3 {
@@ -271,9 +275,33 @@ a {
   padding-bottom: 0.5em;
   font-size: 1.5em;
   width: 100%;
-  border: 1px red solid;
+  margin-bottom: 0.5em;
+  
 }
 
+.active {
+  color: var(--accent-color);
+  padding-top: 0.5em;
+  border: 1px var(--accent-color) solid;
+  border-radius: 0.5em;
+}
+
+.active::before {
+  content: '';
+  display: inline-block;
+  position: relative;
+  top: 0.12em;
+  left: -2em; 
+  width: 0; 
+  height: 0; 
+  border-left: 0.4em solid transparent;
+  border-right: 0.4em solid transparent;
+  border-top: 1em solid var(--accent-color);
+  border-radius: 0.2em;
+  transform: rotate(-90deg);
+}
+
+/*
 #work-selector li:hover::before { 
   content: '';
   display: inline-block;
@@ -286,7 +314,7 @@ a {
   border-top: 1em solid var(--accent-color);
   border-radius: 0.2em;
   transform: rotate(-90deg);
-}
+}*/
 
 #work-display {
   grid-area: display;
@@ -310,23 +338,24 @@ a {
 }
 
 #work-info {
-  grid-area: info;
   border: 1px red solid;
+
+  grid-area: info;
+
   align-self: center;
   text-align: start;
-  width: 100%;
+  width: 90%;
   height: 80%;
 }
 
 #about-wrapper {
   display: grid;
-  grid-template-rows: 10% 40% 40% 20%;
+  grid-template-rows: 10% 40% 60%;
   grid-template-columns: 50% 50%;
   grid-template-areas: 
     "head head"
     "content pic"
     "skills pic"
-    "arrow arrow" 
   ;  
 
   height: 100vh;
@@ -337,7 +366,7 @@ a {
   text-align: start; 
 
   padding-bottom: 10em;
-  border: 1px red solid;
+
 }
 
 #about-wrapper h2 {
@@ -346,13 +375,9 @@ a {
   
   justify-self: start;
   align-self: center;
-  border: 1px red solid;
   
 }
 
-#about-wrapper h3 {
-  border: 1px red solid;
-}
 
 #about-wrapper p {
   color: var(--tertiary-text-color);
@@ -364,7 +389,6 @@ a {
   text-align: start;
   
   width: 100%;
-  border: 1px red solid;
 }
 
 #skill-selector {
@@ -396,9 +420,8 @@ a {
   justify-content: start;
   justify-self: start;
   align-self: start;
-  width: 30vw;
+  width: 40vw;
 
-  border: 1px red solid;
   padding: 1em;
 }
 
@@ -416,12 +439,11 @@ a {
 #bio {
   margin: 5em 0em 0em 5em;
   grid-area: content;
-  border: 1px blue solid;
 }
 
 #bio-pic {
   margin-top: 20%;
-  justify-self: center;
+  justify-self: end;
   grid-area: pic;
   border: 1px var(--accent-color) solid;
   width: 25em;
@@ -466,7 +488,7 @@ a {
 
   height: 100vh;
   min-width: 40em;
-  border: 1px red solid;
+
   justify-items: start; 
 
   padding-bottom: 10em;
@@ -480,7 +502,6 @@ a {
 
   height: 100vh;
   min-width: 40em;
-  border: 1px red solid;
   justify-items: start;
   
 }
@@ -505,7 +526,6 @@ a {
 }
 
 #project-selector li {
-  border: 1px red solid;
   height: 5em;
   width: 5em;
   margin: 1em;
@@ -520,7 +540,6 @@ a {
   justify-self: center;
   height: 15em;
   width: 15em;
-  border: 1px red solid;
 }
 
 #contact {
@@ -535,8 +554,6 @@ a {
 
   width: var(--section-width);
   height: 100vh;
-
-   border: 1px red solid; 
 
   text-align: center;
 }
