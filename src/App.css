@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .App{
   --primary-color: #1d1e25;
   --secondary-text-color: #C4C4C4;
@@ -66,8 +70,9 @@ li:hover {
   min-width: 25em;
   font-size: 1.25em;
   width: 100vw;
-  background: rgba(0,0,0,0.05);
-  justify-content: center;
+  background: rgba(0,0,0,0.1);
+  justify-content: start;
+  z-index: 100;
 }
 
 #nav ul {
@@ -134,18 +139,28 @@ li:hover {
 
 .arrow {
   position: fixed;
-  top: 0;
+  top: 94.5vh;
   left: 10%;
   background-color: var(--accent-color);
   display: flex;
-  height: 50%;
   width: 0.2em;
   align-self: start;
+  transition: all 1s;
+  animation: float 1s alternate infinite;
+}
 
+@keyframes float {
+  0% {
+    padding-top: 0;
+  }
+  100% {
+    padding-top: .1em;
+  }
 }
 
 .arrow::before {
   content: '';
+  color: rgba(255,255,255,0.1);
   display: block;
   position: relative;
   top: 100%;
@@ -181,6 +196,17 @@ li:hover {
   justify-self: center;
   height: 20em;
   width: 0.2em;
+  animation: rotate 2s alternate infinite ease-in-out;
+  transform-origin: top;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(1deg);
+  }
 }
 
 #light-bulb::before {
@@ -193,6 +219,8 @@ li:hover {
   height: 1.25em; 
   background: var(--accent-color);
   border-radius: 1em;
+
+  animation: rotate 1s alternate infinite ease-in-out;
 }
 
 #light-bulb::after {
@@ -276,16 +304,27 @@ li:hover {
   font-size: 1.5em;
   width: 100%;
   margin-bottom: 0.5em;
+  cursor: pointer;
+  transition: padding 0.5s ease-in-out;
   
+}
+
+#work-selector li:hover {
+  padding: 1%;
+  border-radius: 0.5em;
 }
 
 .active {
   color: var(--accent-color);
-  padding-top: 0.5em;
+  padding: 0.5em;
   border: 1px var(--accent-color) solid;
   border-radius: 0.5em;
+  box-shadow: 0px 0px 1px var(--accent-color);
+  animation: activein 1s alternate;
 }
-
+.active:hover {
+  padding: 0.6em !important;
+}
 .active::before {
   content: '';
   display: inline-block;
@@ -299,6 +338,18 @@ li:hover {
   border-top: 1em solid var(--accent-color);
   border-radius: 0.2em;
   transform: rotate(-90deg);
+
+  animation: point 0.2s alternate infinite;
+}
+
+@keyframes point {
+  0% {
+    left: -2em;
+  }
+
+  100% {
+    left: -2.1em;
+  }
 }
 
 /*
@@ -318,7 +369,6 @@ li:hover {
 
 #work-display {
   grid-area: display;
-  border: 0.2em var(--accent-color) solid;
   justify-self: center;
   align-self: center;
   width: 80%;
@@ -338,7 +388,7 @@ li:hover {
 }
 
 #work-info {
-  border: 1px red solid;
+  
 
   grid-area: info;
 
@@ -346,6 +396,21 @@ li:hover {
   text-align: start;
   width: 90%;
   height: 80%;
+
+  
+}
+
+#work-info p {
+animation: fade-in 0.5s ease-in;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 #about-wrapper {
@@ -450,6 +515,7 @@ li:hover {
   height: 25em;
   transform: rotate(45deg);
   border-radius: 1em;
+  animation: float 1s alternate infinite;
 }
 
 #bio-pic img {
@@ -597,6 +663,7 @@ li:hover {
   justify-self: center;
   font-size: 1.5em;
   border-radius: 0.5em;
+  animation: float 1s alternate infinite;
 }
 
 .link-button:hover {

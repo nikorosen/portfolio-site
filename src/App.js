@@ -1,11 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState, Suspense } from 'react';
+import ReactDOM from 'react-dom';
 import { OrbitControls, useGLTF, Edges } from "@react-three/drei";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 //import three from 'three';
 import * as THREE from 'three';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import {Scrollbar} from 'smooth-scrollbar-react'
 
 import Nav from './comps/Nav.js';
 import Socials from './comps/Socials.js';
@@ -42,7 +46,6 @@ const LightBulb = () => {
 
 const Home = () => {
   return <div id="home">
-    <div class="arrow"></div>
     <LightBulb/>
     <Title/>
     <div className="sidebar">
@@ -170,7 +173,13 @@ const Work = (props) => {
       url: logo2 }     
   }
 
-  return <div id="work-wrapper">
+  useEffect(() => {
+    Aos.init({ duration: 2000});
+
+
+  }, []);
+
+  return <div data-aos="fade-up" id="work-wrapper">
       <h2>/* work */</h2>
       <WorkSelecter 
         work={work} 
@@ -179,7 +188,6 @@ const Work = (props) => {
         />
       <WorkDisplay work={work} selectedWork={props.selectedWork}/>
       <WorkInfo work={work} selectedWork={props.selectedWork}/>
-      <div class="arrow-down" style={{gridArea:"arrow"}}></div>
     </div>
 }
 
@@ -203,7 +211,7 @@ const WorkSelecter = (props) => {
 
     props.setSelectedWork(e.target.id);
     
-    console.log(itemsRef.current[index])
+    //console.log(itemsRef.current[index])
     itemsRef.current[index].classList.toggle('active');
   }
 
@@ -294,6 +302,7 @@ const WorkDisplay = (props) => {
 }
 
 const WorkInfo = (props) => {
+  
   return <div id="work-info">
   <h4>title :</h4>
     <p>{props.selectedWork}</p> 
@@ -326,7 +335,14 @@ const Bio = () => {
 }
 
 const About = ({selectedSkill, setSelectedSkill, display}) => {
-  return <div id="about-wrapper">
+ 
+  useEffect(() => {
+    Aos.init({ duration: 2000});
+
+
+  }, []);
+ 
+ return <div data-aos="fade-left" id="about-wrapper">
     <a id="about"></a>
     <h2>/* about */</h2>
     <Bio/>
@@ -363,7 +379,14 @@ display={display}/>*/}
 }
 
 const Contact = () => {
-  return <div id="contact">
+  useEffect(() => {
+    Aos.init({ duration: 2000});
+
+
+  }, []);
+
+
+  return <div data-aos="fade-right" id="contact">
     <a id="contact"></a>
     <h2>/* Contact */</h2>
     <div id="cta">
@@ -385,13 +408,61 @@ function App() {
 
   const [selectedWork, setSelectedWork] = useState("FishTank2021");
   const [selectedSkill, setSelectedSkill] = useState("Javascript");
-  const [previousSelectedWork, setPreviousSelectedWork] = useState();
   const [selectedProject, setSelectedProject] = useState("InstaScraper");
   const [selectedAboutDisplay, setSelectedDisplay]  = useState("skills");
+  const [arrowHeight, setArrowHeight] = useState(0);
+  const [arrowPosition, setArrowPosition] = useState(94.5);
+  const [arrowRotation, setArrowRotation] = useState(0);
+
+  let sectionRef = React.createRef();
+
+  useEffect(()=>{
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  },[arrowHeight])
+
+  const handleScroll = () => {
+    
+    let newArrowHeight = getScrollPercent()*0.6;
+
+      setArrowPosition(94.5 - getScrollPercent()*.79);
+      //document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
+      
+      const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
+      console.log(map(getScrollPercent(), 80, 0, 100, 90))
+
+      if (getScrollPercent() >= 80)
+        setArrowRotation(map(getScrollPercent(), 80, 100, 0, -90))
+      else if (arrowRotation != 0)
+        setArrowRotation(0);
+
+      console.log("old height:" + arrowHeight);
+      console.log("new height:" + newArrowHeight);
+      console.log("arrow position: "+ arrowPosition);
+      console.log("scroll percent:" +getScrollPercent());
+
+    
+    setArrowHeight(newArrowHeight);
+  }
+
+  function scale (number, inMin, inMax, outMin, outMax) {
+    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+}
+
+  const getScrollPercent = () => {
+    let h = document.documentElement, 
+        b = document.body,
+        st = 'scrollTop',
+        sh = 'scrollHeight';
+    return (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+}
+
+
 
   return (
     <div className="App">
-      <div className="arrow"></div>
+      <div style={{transform: ("rotate("+arrowRotation+"deg)"), top: (arrowPosition+'vh'), height: (arrowHeight+'vh')}} className="arrow"></div>
+      
       <Nav/>
       <Home/>
       <Work 
@@ -405,7 +476,7 @@ function App() {
       {/*<Projects 
         selectedProject={selectedProject} 
   setSelectedProject={setSelectedProject}/>*/}
-      <Contact/>
+      <Contact ref={sectionRef}/>
     </div>
   );
 }
