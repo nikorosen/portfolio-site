@@ -1,14 +1,29 @@
-html {
-  scroll-behavior: smooth;
-}
-
-.App{
+:root {
   --primary-color: #1d1e25;
   --secondary-text-color: #C4C4C4;
   --tertiary-text-color: #979797;
   --primary-text-color: #E5E5E5;
   --accent-color: #56BC5C;
+  --skill-icon-brightness: 1;
 
+  transition: color 5s ease-in-out;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 1em;
+}
+
+.white-context {
+  --primary-color: #dfdfdf;
+  --secondary-text-color: #1d1e25;
+  --tertiary-text-color: #8d8c8c;
+  --primary-text-color: #575555;
+  --accent-color: #3d8042;
+  --skill-icon-brightness: 0;
+}
+
+.App{
   --section-width: 65vw;
   --home-width: 75vw;
 
@@ -21,20 +36,21 @@ html {
   align-items: center;
 }
 
+
+
 p {
-  font-size: 1.2em;
   color: var(--tertiary-text-color);
 }
 
 h1 {
   color: var(--accent-color);
-  font-size: 8em;
+  font-size: 15em;
   margin: -0.1em;
 }
 
 h2 {
   font-size: 8em;
-  opacity: 10%;
+  opacity: 0.1;
 }
 
 h3 {
@@ -52,7 +68,7 @@ ul {
 }
 
 a {
-  color: inherit;
+  color: var(--secondary-text-color);
   text-decoration: none;
 }
 
@@ -68,10 +84,9 @@ li:hover {
   top: 0;
   left: 0;
   min-width: 25em;
-  font-size: 1.25em;
   width: 100vw;
-  background: rgba(0,0,0,0.1);
-  justify-content: start;
+  border: 1px red solid;
+  justify-content: center;
   z-index: 100;
 }
 
@@ -79,17 +94,16 @@ li:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: end;
 }
 
 #nav li {
   padding: 0 1em 0 1em;
+  color: var(--secondary-text-color)
 }
 
 #socials {
   grid-area: socials;
   min-width: 20em;
-  font-size: 1.5em;
   z-index: 1;
 }
 
@@ -130,6 +144,7 @@ li:hover {
   height: 15em;
   width: 2em;
   grid-area: sidebar;
+  justify-self: end;
 }
 
 .sidebar-box {
@@ -143,9 +158,9 @@ li:hover {
   left: 10%;
   background-color: var(--accent-color);
   display: flex;
-  width: 0.2em;
+  width: 1px;
   align-self: start;
-  transition: all 1s;
+  transition: transform 1s;
   animation: float 1s alternate infinite;
 }
 
@@ -164,11 +179,11 @@ li:hover {
   display: block;
   position: relative;
   top: 100%;
-  right: 0.3em;
+  right: 0.25em;
   width: 0; 
   height: 0; 
-  border-left: 0.4em solid transparent;
-  border-right: 0.4em solid transparent;
+  border-left: 0.3em solid transparent;
+  border-right: 0.3em solid transparent;
   border-top: 1em solid var(--accent-color);
   border-radius: 0.2em;
 }
@@ -190,22 +205,28 @@ li:hover {
 }*/
 
 #light-bulb {
+  position: absolute;
+  top:0;
+  right: 12.75vw;
   background-color: var(--tertiary-text-color);
   grid-area: lightbulb;
   align-self: start;
   justify-self: center;
   height: 20em;
-  width: 0.2em;
+  width: 0.1em;
   animation: rotate 2s alternate infinite ease-in-out;
   transform-origin: top;
+  cursor: pointer;
 }
+
+
 
 @keyframes rotate {
   0% {
-    transform: rotate(-1deg);
+    transform: rotate(-0.5deg);
   }
   100% {
-    transform: rotate(1deg);
+    transform: rotate(0.5deg);
   }
 }
 
@@ -224,6 +245,8 @@ li:hover {
 }
 
 #light-bulb::after {
+  
+
   content: '';
       display: block;
       position: relative;
@@ -231,9 +254,14 @@ li:hover {
       right: 0.515em;
       width: 1.2em; 
       height: 1.2em; 
-      background: blanchedalmond;
+      background: var(--primary-text-color);
       border-radius: 1em;
       box-shadow: 0px 0px 50px white;
+}
+
+#light-bulb:hover {
+  padding-top: 0.5em;
+  transition: padding-top 0.2s ease-in-out;
 }
 
 #title {
@@ -242,7 +270,7 @@ li:hover {
   flex-direction: column;
   flex-wrap: none;
 
-  width: 80%;
+  width: 100%;
   justify-self: center;
   min-width: 30em;
 }
@@ -300,7 +328,7 @@ li:hover {
 }
 
 #work-selector li {
-  padding-bottom: 0.5em;
+  padding: 0.1em;
   font-size: 1.5em;
   width: 100%;
   margin-bottom: 0.5em;
@@ -310,7 +338,7 @@ li:hover {
 }
 
 #work-selector li:hover {
-  padding: 1%;
+  padding: 2%;
   border-radius: 0.5em;
 }
 
@@ -486,6 +514,8 @@ animation: fade-in 0.5s ease-in;
   justify-self: start;
   align-self: start;
   width: 40vw;
+
+  filter: brightness(var(--skill-icon-brightness));
 
   padding: 1em;
 }

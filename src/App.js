@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState, Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import { OrbitControls, useGLTF, Edges } from "@react-three/drei";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
@@ -10,6 +10,8 @@ import * as THREE from 'three';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import {Scrollbar} from 'smooth-scrollbar-react'
+
+import { ThemeContext, themes } from './ThemeContext';
 
 import Nav from './comps/Nav.js';
 import Socials from './comps/Socials.js';
@@ -44,10 +46,11 @@ const LightBulb = () => {
   return <div id="light-bulb"></div>
 }
 
-const Home = () => {
+const Home = (props) => {
   return <div id="home">
-    <LightBulb/>
-    <Title/>
+    {console.log('titleSize on home render: ' + props.titleSize)}
+    
+    <Title titleSize={props.titleSize}/>
     <div className="sidebar">
       <div style={{backgroundColor:"var(--primary-color)"}} className="sidebar-box"></div>
       <div style={{backgroundColor:"var(--secondary-text-color)"}} className="sidebar-box"></div>
@@ -83,7 +86,7 @@ const SkillSelector = (props) => {
       <ul>
         { Object.keys(props.skills).map( key => { return <li 
             onMouseOver={(e) => {
-            console.log(e.target.id)
+            //console.log(e.target.id)
             props.setSelectedSkill(e.target.id) } }
 
             id={key}> {key} </li> }) }
@@ -224,7 +227,8 @@ const WorkSelecter = (props) => {
             className='' 
             key={index}
             ref = {el => {itemsRef.current[index] = el
-            console.log(itemsRef.current[index])}}
+            //console.log(itemsRef.current[index])
+          }}
             onClick={(e) => {handleClick(e, index)}} 
             id={key}> {key} </li> }
         )}
@@ -413,6 +417,8 @@ function App() {
   const [arrowHeight, setArrowHeight] = useState(0);
   const [arrowPosition, setArrowPosition] = useState(94.5);
   const [arrowRotation, setArrowRotation] = useState(0);
+  const [darkMode, setDarkMode] = useState(true);
+  const [titleSize, setTitleSize] = useState(12);
 
   let sectionRef = React.createRef();
 
@@ -443,6 +449,8 @@ function App() {
 
     
     setArrowHeight(newArrowHeight);
+    setTitleSize(12 - getScrollPercent()*0.1)
+    console.log('titlesize: ' +titleSize);
   }
 
   function scale (number, inMin, inMax, outMin, outMax) {
@@ -464,7 +472,19 @@ function App() {
       <div style={{transform: ("rotate("+arrowRotation+"deg)"), top: (arrowPosition+'vh'), height: (arrowHeight+'vh')}} className="arrow"></div>
       
       <Nav/>
-      <Home/>
+      <ThemeContext.Consumer>
+            {({ changeTheme }) => (
+              <div onClick={(e) => {
+                  setDarkMode(!darkMode);
+                  changeTheme(darkMode ? themes.light : themes.dark);
+                  console.log(darkMode);}} id="light-bulb"></div>
+            )}
+          </ThemeContext.Consumer>
+      
+      <Home
+        titleSize={titleSize}
+      />
+      {console.log('titleSize on app render: ' + titleSize)}
       <Work 
         selectedWork={selectedWork} 
         setSelectedWork={setSelectedWork}
@@ -477,6 +497,7 @@ function App() {
         selectedProject={selectedProject} 
   setSelectedProject={setSelectedProject}/>*/}
       <Contact ref={sectionRef}/>
+      
     </div>
   );
 }
