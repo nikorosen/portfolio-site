@@ -59,8 +59,8 @@ const Home = (props) => {
       <div style={{backgroundColor:"var(--accent-color)"}} className="sidebar-box"></div>
     </div>
     
-    <Socials/>
-    <p style={{gridArea: "scrolldown"}}>scrollDown()</p>
+    
+    <p id="scroll-down" style={{gridArea: "scrolldown"}}>scrollDown()</p>
   </div>
 }
 
@@ -182,7 +182,8 @@ const Work = (props) => {
 
   }, []);
 
-  return <div data-aos="fade-up" id="work-wrapper">
+  // data-aos="fade-up"
+  return <div  id="work-wrapper">
       <h2>/* work */</h2>
       <WorkSelecter 
         work={work} 
@@ -219,7 +220,7 @@ const WorkSelecter = (props) => {
   }
 
   return <div id="work-selector">
-    <h3>Some things I've done</h3>
+    <h3>Some things I've done : </h3>
     <p>work = [</p>
       <ul>
         {Object.keys(props.work).map( (key, index) => 
@@ -289,7 +290,6 @@ const Model = (props) => {
 const WorkDisplay = (props) => {
   return <div id="work-display">
       {/*<img src={props.work[props.selectedWork]}></img>*/}
-      <div style={{height:"80%"}}>
       
       <p style={{textAlign:"start"}}>&#60;Canvas model="{props.selectedWork}"></p>
       <Canvas camera = {{position:[10,18,23], fov: 1}}>
@@ -301,24 +301,28 @@ const WorkDisplay = (props) => {
       </Canvas>
       <p style={{textAlign:"start"}}>&#60;/Canvas></p>
       
-      </div>
     </div>
 }
 
 const WorkInfo = (props) => {
   
   return <div id="work-info">
-  <h4>title :</h4>
-    <p>{props.selectedWork}</p> 
-    <h4>role :</h4>
-    <p> {props.work[props.selectedWork]['role']} </p>
-  <h4>desc :</h4>
-    <p style={{height:"16em"}}> {props.work[props.selectedWork]['desc']} </p>
-  <h4>tech : </h4> 
-    <p> {props.work[props.selectedWork]['tech']} </p>
-  <h4>url :</h4>
-    <p> <a href={props.work[props.selectedWork]['projectUrl']}>View project</a> </p>
+    
   
+    <div id='work-info-border'>
+    <ul><li><h4>title :</h4>
+    <p>{props.selectedWork}</p> </li>
+    <li><h4>role :</h4>
+    <p> {props.work[props.selectedWork]['role']} </p></li>
+    <li><h4>desc :</h4>
+    <p> {props.work[props.selectedWork]['desc']} </p>
+    <li><h4>tech : </h4> 
+    <p> {props.work[props.selectedWork]['tech']} </p></li>
+  <li></li><h4>url :</h4>
+    <p> <a href={props.work[props.selectedWork]['projectUrl']}>View project</a> 
+    </p></li>
+    </ul>
+    </div>
 </div>
 
 }
@@ -331,10 +335,8 @@ const Bio = () => {
     Addicted to programming, design and music.“`
   
   return <div id="bio">
-    <div>
-      <h3>bio :</h3>
-      <p>{bio}</p>
-    </div>
+      <h3>Bio :</h3>
+      <p id='bio-text'>{bio}</p>
   </div>
 }
 
@@ -346,7 +348,9 @@ const About = ({selectedSkill, setSelectedSkill, display}) => {
 
   }, []);
  
- return <div data-aos="fade-left" id="about-wrapper">
+// data-aos="fade-left"
+
+ return <div  id="about-wrapper">
     <a id="about"></a>
     <h2>/* about */</h2>
     <Bio/>
@@ -354,14 +358,16 @@ const About = ({selectedSkill, setSelectedSkill, display}) => {
       selectedSkill={selectedSkill} 
       setSelectedSkill={setSelectedSkill} 
 display={display}/>*/}
-    
+    <div id="bio-pic-container">
+    <p>&#60;img src="</p>
     <div id="bio-pic">
     <img src={bioPic}></img>
-    <div id="pic-border"></div>
+    {/*<div id="pic-border"></div>*/}
+    </div><p style={{textAlign: 'end'}}>"/></p>
     </div>
     
     <div id="skill-wrapper">
-    <h3>Some things I do: </h3>
+    <h3>Some things I do : </h3>
     <ul id="skill-icons">
       <li><img src={icon_js}></img></li>
       <li><img src={icon_html}></img></li>
@@ -389,8 +395,8 @@ const Contact = () => {
 
   }, []);
 
-
-  return <div data-aos="fade-right" id="contact">
+//data-aos="fade-right"
+  return <div  id="contact-wrapper">
     <a id="contact"></a>
     <h2>/* Contact */</h2>
     <div id="cta">
@@ -398,9 +404,6 @@ const Contact = () => {
       <p>“ Looking for freelance projects but i’m open to any interesting opportunity, let’s get in touch! ”</p>
     </div>
     <a class="link-button" href="https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap" target="_blank">email()</a>
-    {/*<div class="arrow-up"/>*/}
-    {/*<p id="to-top">toTop()</p>*/}
-    <Socials/>
   </div>
 }
 
@@ -418,7 +421,7 @@ function App() {
   const [arrowPosition, setArrowPosition] = useState(94.5);
   const [arrowRotation, setArrowRotation] = useState(0);
   const [darkMode, setDarkMode] = useState(true);
-  const [titleSize, setTitleSize] = useState(12);
+  const [titleSize, setTitleSize] = useState();
 
   let sectionRef = React.createRef();
 
@@ -449,7 +452,7 @@ function App() {
 
     
     setArrowHeight(newArrowHeight);
-    setTitleSize(12 - getScrollPercent()*0.1)
+    //setTitleSize(12 + getScrollPercent()*0.05)
     console.log('titlesize: ' +titleSize);
   }
 

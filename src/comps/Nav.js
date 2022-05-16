@@ -1,13 +1,16 @@
+import Socials from './Socials.js'
+
 const Nav = () => {
-    return <div id="nav">
+    return <div id="nav-bar">
+      <div id="nav">
       <ul>
-        <li style={{color:"var(--accent-color)"}}><a href="#home">niko</a></li>
-        <li><a href="#home">home</a></li>
+        <li><a style={{color:"var(--accent-color)"}} href="#home">niko</a></li>
         <li><a href="#work-wrapper">work</a></li>
         <li><a href="#about-wrapper">about</a></li>
-        <li><a href="#project-wrapper">projects</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
+      <Socials></Socials>
+      </div>
     </div>
   }
 
