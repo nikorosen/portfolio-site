@@ -5,8 +5,7 @@
   --primary-text-color: #E5E5E5;
   --accent-color: #56BC5C;
   --skill-icon-brightness: 1;
-  --section-width: 65vw;
-  --home-width: 75vw;
+  
 
   transition: color 5s ease-in-out;
 }
@@ -27,7 +26,8 @@ html {
 }
 
 .App{
-
+  --section-width: 65vw;
+  --home-width: 75vw;
 
   background-color: var(--primary-color);
   color: var(--secondary-text-color);
@@ -150,7 +150,7 @@ li:hover {
 }
 
 .sidebar {
-  display:flex;
+  display:none;
   flex-direction: column;
   background-color: var(--accent-color);
   height: 15em;
@@ -213,22 +213,6 @@ li:hover {
   border-radius: 0.2em;
 }
 
-.arrow-right {
-  transform: rotate(-90deg)
-}
-.arrow-left {
-  transform: rotate(90deg)
-}
-.arrow-left {
-  transform: rotate(-180deg)
-}
-
-/*
-@keyframes arrow-down {
-  from {height: 0%; }
-  to {height: 100%; }
-}*/
-
 #light-bulb {
   position: absolute;
   top:0;
@@ -243,7 +227,6 @@ li:hover {
   transform-origin: top;
   cursor: pointer;
 }
-
 
 
 @keyframes rotate {
@@ -321,21 +304,28 @@ li:hover {
   width: var(--section-width);
   height: 100vh;
 
+  /*border: 1px red solid;*/
+
   justify-items: center;
   align-items: center;  
   text-align: start;
 }
 
 #work-wrapper h2 {
+  /*border: 1px red solid;*/
   grid-area: head;
   align-self: center;
   opacity: 0.1;
 }
 
 #work-selector {
+  display: flex;
   width: 100%;
   height: 80%;
-  grid-area: work
+  grid-area: work;
+  flex-wrap: wrap;
+  align-self: center;
+  /*border: 1px red solid;*/
 }
 
 #work-selector h3 {
@@ -404,7 +394,7 @@ li:hover {
   }
 }
 
-/*
+
 #work-selector li:hover::before { 
   content: '';
   display: inline-block;
@@ -417,7 +407,7 @@ li:hover {
   border-top: 1em solid var(--accent-color);
   border-radius: 0.2em;
   transform: rotate(-90deg);
-}*/
+}
 
 #work-display {
   grid-area: display;
@@ -425,6 +415,7 @@ li:hover {
   align-self: center;
   width: 80%;
   height: 80%;
+  /*border: 1px red solid;*/
 }
 
 #work-display p {
@@ -439,26 +430,33 @@ li:hover {
   opacity: 0.25;
   font-size: 1.25em;
   line-height: 0;
-  width: 120%;
+  width: 100%;
   font-style: italic;
 }
 
-#work-display img {
-  height: 100%;
+#work-info-border {
+  
 }
 
 #work-info {
-  
-
   grid-area: info;
-
   align-self: center;
   text-align: start;
   width: 100%;
+  height: 80%;
 
-  border: 1px var(--accent-color) solid;
+  /*border: 1px red solid;*/
   border-radius: 1em;
-  padding: 1em;
+  
+}
+
+#work-info ul {
+  padding-left: 0;
+}
+
+#work-info li p {
+  font-size: 1.5em;
+  padding-left: 1em;
 }
 
 #work-info p {
@@ -469,18 +467,7 @@ animation: fade-in 0.5s ease-in;
   animation: none;
 }
 
-#work-info-border {
-  position: relative;
-  top: 0%;
-  left: 0%;
-  margin: 0.1em;
-  padding: 1em;
-  width: 100%;
-  height: 100%;
-  border: 1px var(--accent-color) solid;
-  border-radius: 1em;
-  z-index: 100;
-}
+
 
 @keyframes fade-in {
   0% {
@@ -587,17 +574,16 @@ animation: fade-in 0.5s ease-in;
 }
 
 #bio-pic-container p {
+  /*border: 1px red solid;*/
   opacity: 0.25;
-  font-size: 1.25em;
   line-height: 0;
-  width: 120%;
   font-style: italic;
 }
 
 #bio-pic-container {
   display: flex;
  grid-area: pic;
- border: 1px red solid;
+ /*border: 1px red solid;*/
  justify-content: center;
  align-items: start;
 
@@ -605,8 +591,7 @@ animation: fade-in 0.5s ease-in;
 
 #bio-pic {
   align-self: center;
-  
-  width:40%;
+  width: 50%;
   border: 1px var(--accent-color) solid;
   transform: rotate(45deg);
   border-radius: 1em;
@@ -618,7 +603,7 @@ animation: fade-in 0.5s ease-in;
   height: auto;
   object-fit: cover;
   border-radius: 1em;
-  margin: 0.5em;
+  margin: 0.5em 1em -1em 0.5em;
 }
 
 #pic-border {
@@ -712,8 +697,7 @@ animation: fade-in 0.5s ease-in;
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   :root {
-    --section-width: 100%;
-    --home-width: 90%;
+    
   }
 
   html {
@@ -723,7 +707,6 @@ animation: fade-in 0.5s ease-in;
   
   p {
     font-size: 1.4em;
-
   }
 
   h1 {
@@ -731,12 +714,12 @@ animation: fade-in 0.5s ease-in;
   }
 
   h2 {
-    font-size: 5em;
-    border: 1px red solid;
+    font-size: 4.5em;
+    /*border: 1px red solid;*/
     margin: 0em;
   }
   h3 {
-    border: 1px red solid;
+    /*border: 1px red solid;*/
   }
 
   .App{
@@ -744,7 +727,9 @@ animation: fade-in 0.5s ease-in;
     flex-direction: row;
     flex-wrap: wrap;
     height: 100%;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
+    --section-width: 100%;
+    --home-width: 90%;
   }
 
   #home {
@@ -753,20 +738,21 @@ animation: fade-in 0.5s ease-in;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
     height: 90vh;
   }
 
   #scroll-down{
     align-self: end;
     justify-self: center;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
     width:100%;
   }
 
   #title {
+    padding: 1em;
     display: flex;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
     width: 100%;
   }
 
@@ -787,21 +773,21 @@ animation: fade-in 0.5s ease-in;
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
   }
 
   #nav ul {
     display:flex;
     padding: 0;
     font-size: 1.5em;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
   }
 
   #work-wrapper {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
     padding: 1em;
     height: 100%;
   }
@@ -812,7 +798,7 @@ animation: fade-in 0.5s ease-in;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
   }
 
   #work-selector li {
@@ -824,17 +810,17 @@ animation: fade-in 0.5s ease-in;
   }
 
   #work-selector{
-    border: 1px red solid;
+    /*border: 1px red solid;*/
     height: 25%;
   }
 
   #work-selector p {
-    border: 1px red solid;
+    /*border: 1px red solid;*/
     width: 100%;
   }
 
   #work-info ul {
-    border: 1px red solid;
+    /*border: 1px red solid;*/
 
 
   }
@@ -845,10 +831,11 @@ animation: fade-in 0.5s ease-in;
 
   #work-display {
    width: 100%;
-   height: 50%; 
+   height: 10%; 
    display: flex;
+   flex-wrap: wrap;
    justify-self: center;
-   border: 1px red solid;
+   /*border: 1px red solid;*/
   }
 
   #work-info {
@@ -857,7 +844,7 @@ animation: fade-in 0.5s ease-in;
     justify-self: center;
     width: 100%;
     border: none;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
   }
 
   #work-info ul{
@@ -868,38 +855,48 @@ animation: fade-in 0.5s ease-in;
   #work-info-border{
     border: none;
     height: 50%;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
   }
 
   #about-wrapper {
     margin: 0em;
     padding: 1em;
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
   }
 
   #bio {
     margin: 0em;
+    padding: 0em;
+    /*border: 1px red solid;*/
+  }
+
+  #bio-text {
+    margin: 0em;
   }
 
   #about-wrapper p {
-    border: 1px red solid;
+    /*border: 1px red solid;*/
   }
 
-  #bio-pic-container {
+  #bio-pic-container {  
     width: 100%;
-    border: 1px red solid;
     display: flex;
     flex-wrap: wrap;
+    align-self: center;
     justify-content: center;
-    align-content: start;
+    align-content: center;
+    padding: 5em 4em 5em 0em;
+    margin: 0em;
+  }
+
+  #bio-pic {
+    width: 30%;
   }
 
   #pic-border {
     
-    border: 1px red solid;
     justify-self: center;
   }
 
@@ -908,56 +905,161 @@ animation: fade-in 0.5s ease-in;
   }
 
   #skill-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     margin: 0em;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
     
   }
 
   #skill-icons {
+    
     justify-self: center;
     justify-content: center;
-    border: 1px red solid;
-    width: 90%;
+    /*border: 1px red solid;*/
+    width: 100%;
   }
 
   #skill-icons img {
     justify-content: center;
   }
 
-
   #contact-wrapper {
     padding: 1em;
-    overflow-x: hidden;
     display: flex;
     flex-wrap: wrap;
     justify-items: center;
-    width: 100%;
-    height: 50vh;
-    padding-top: 10vh;
-    border: 1px red solid;
+    /*border: 1px red solid;*/
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: .5em;
   }
 
-  #cta {
-    padding: 0em;
-    height: 20vh;
-    border: 1px red solid;
-    margin-left: 10vw;
+  .App {
+  --section-width: 95vw;
+  --home-width: 75vw;
   }
 
-  .link-button {
-    justify-self: end;
-    margin-left: 30vw;
+  .arrow {
+    display: none;
+  }
+
+  h1 {
+    font-size: 8em;
+  }
+  
+  #light-bulb{
+    height: 20%
+  }
+
+  #title {
+    height: 90%;
+  }
+
+  #bio-pic {
+    align-self: center;
+  }
+
+  #bio-pic-container {
+    height: 40vh;
+    padding-bottom: 1em;
+  }
+
+  #skill-wrapper{
     
+    width: 100%;
+    /*border: 1px red solid;*/
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: .6em;
+    }
+
+  .App {
+    --section-width: 90vw;
   }
 
+  h1 {
+    font-size: 10em;
+  }
+
+  h3 {
+    font-size: 1.75em;
+  }
+
+  p {
+    font-size: 2em;
+  }
+  
+  #light-bulb{
+    height: 20%
+  }
+
+  #title {
+    height: 90%;
+
+  }
+
+  .arrow {
+    left: 3%;
+  }
+}
 
 
+@media only screen and (min-width: 1440px) {
+  html {
+    font-size: .6em;
+  }
+
+  h2{
+    font-size: 6em;
+  }
+
+  h3 {
+    font-size: 2em;
+  }
 
   
 
-  
+  .App{
+    --section-width: 80vw;
+  }
 
+  .arrow {
+    display: flex;
+  }
+
+}
+
+@media only screen and (min-width: 2000px) {
+  html {
+    font-size: .75em;
+  }
+
+  h2{
+    font-size: 6em;
+  }
+
+  h3 {
+    font-size: 2em;
+  }
+
+  .App{
+    --section-width: 80vw;
+  }
+
+  .arrow {
+    display: flex;
+  }
 
 }
 
