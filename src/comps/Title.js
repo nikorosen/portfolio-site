@@ -1,6 +1,7 @@
 const Title = (props) => {
   
-  {console.log('titleSize on title render: ' + props.titleSize)}
+  {/*console.log('titleSize on title render: ' + props.titleSize)*/}
+  
     return <div id="title">
       
       <p style={{alignSelf: "start"}}>class <span style={{color: "var(--primary-text-color)"}}>Niko</span> &#123;</p>
