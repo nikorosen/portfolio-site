@@ -334,7 +334,7 @@ li:hover {
   flex-wrap: wrap;
   flex-direction: row;
 
-  width: 70%;
+  width: 60vw;
   height: max-content;
 
   justify-items: center;
@@ -352,12 +352,12 @@ li:hover {
   width: 50%;
   
   flex-wrap: wrap;
-  border: 1px red solid;
+  ;
   align-self: center;
 }
 
 #work-selector ul {
-  border: 1px red solid;
+  ;
   width: max-content;
   height: max-content;
 }
@@ -366,6 +366,10 @@ li:hover {
   display: flex;
   flex-wrap: wrap;
   width: 50%;
+}
+
+#work-info-wrapper {
+  justify-content: center;
 }
 
 #work-selector h3 {
@@ -464,6 +468,7 @@ li:hover {
 
 #work-display {
   height: 60%;
+  
   justify-self: center;
   margin-top: 5vh;
 }
@@ -472,7 +477,7 @@ li:hover {
   width: 100%;
   opacity: 0.25;
   font-style: italic;
-  margin: 0;
+  margin-bottom: 3em;
 }
 
 #work-display-wrapper h3 {
@@ -486,16 +491,16 @@ li:hover {
   flex-wrap: wrap;
   text-align: start;
   width: 50%;
-  height: 60vh;
+  height: min-content;
   align-self: start;
   justify-self: center;
 
-  /*border: 1px red solid;*/
+  /*;*/
   border-radius: 1em;
 }
 
 #work-info ul {
-  height: 60vh;
+  height: min-content;
   width: 100%;
   justify-self: center;
   border: 1px var(--primary-text-color) solid;
@@ -523,11 +528,13 @@ animation: fade-in 0.5s ease-in;
 }
 
 #selector {
+  z-index: 100;
   width: 100%;
   font-size: 4em;
   cursor: pointer;
   text-align: center;
 }
+
 
 button {
   cursor: pointer;
@@ -565,7 +572,7 @@ button:hover {
 
   height: 100vh;
   width: var(--section-width);
-  /* border: 1px red solid; */
+  /* ; */
   justify-items: start; 
   text-align: start; 
 }
@@ -646,7 +653,7 @@ button:hover {
 
 
 #bio-pic-container p {
-  /*border: 1px red solid;*/
+  /*;*/
   opacity: 0.25;
   line-height: 0;
   font-style: italic;
@@ -656,7 +663,7 @@ button:hover {
   display: flex;
   padding-top: 15vh;
  grid-area: pic;
- /*border: 1px red solid;*/
+ /*;*/
  justify-content: center;
  align-self: start;
 
@@ -801,12 +808,12 @@ button:hover {
 
   h2 {
     font-size: 4em;
-    /*border: 1px red solid;*/
+    /*;*/
     margin: 0em;
   }
   h3 {
     font-size: 1.75em;
-    /*border: 1px red solid;*/
+    /*;*/
   }
 
   .App{
@@ -814,7 +821,7 @@ button:hover {
     flex-direction: row;
     flex-wrap: wrap;
     height: 100%;
-    /*border: 1px red solid;*/
+    /*;*/
     --section-width: 100%;
     --home-width: 90%;
   }
@@ -824,21 +831,21 @@ button:hover {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /*border: 1px red solid;*/
+    /*;*/
     height: 90vh;
   }
 
   #scroll-down{
     align-self: end;
     justify-self: center;
-    /*border: 1px red solid;*/
+    /*;*/
     width:100%;
   }
 
   #title {
     padding: 4em;
     display: flex;
-    /*border: 1px red solid;*/
+    /*;*/
     width: 100%;
   }
 
@@ -860,7 +867,7 @@ button:hover {
     position: relative;
     
     justify-content: center;
-    /*border: 1px red solid;*/
+    /*;*/
   }
 
   #nav {
@@ -875,8 +882,13 @@ button:hover {
     display:flex;
     padding: 0;
     font-size: 1.5em;
-    /*border: 1px red solid;*/
+    /*;*/
     
+  }
+
+  .flex-container{
+    flex-wrap: wrap;
+    /*border: 1px red solid;*/
   }
 
   #work-wrapper {
@@ -884,8 +896,8 @@ button:hover {
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
-    border: 1px red solid;
-    padding: 2em;
+    ;
+    padding: 4em;
     height: 100%;
     font-size: 1em;
   }
@@ -900,7 +912,7 @@ button:hover {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    /*border: 1px red solid;*/
+    /*;*/
   }
 
   #work-selector li {
@@ -912,12 +924,12 @@ button:hover {
   }
 
   #work-selector{
-    /*border: 1px red solid;*/
+    /*;*/
     height: 25%;
   }
 
   #work-selector p {
-    /*border: 1px red solid;*/
+    /*;*/
     width: 100%;
   }
 
@@ -927,12 +939,19 @@ button:hover {
   }
 
   #work-display {
-   width: 100%;
-   height: 40%; 
-   display: flex;
-   flex-wrap: wrap;
-   align-self: start;
-   /*border: 1px red solid;*/
+  width: 100%;
+  }
+
+  #work-info-wrapper {
+    width: 100%;
+    /*border: 1px red solid;*/
+    height: max-content;
+  }
+
+  #work-display-wrapper {
+    width: 100%;
+    /*border: 1px red solid;*/
+    height: max-content;
   }
 
   #work-info {
@@ -942,18 +961,21 @@ button:hover {
     border: none;
     font-size: .65em;
     /*border: 1px red solid;*/
+    width: 100%;
+    align-self: start;
   }
 
   #work-info ul{
     padding: 0em;
     margin: 0em;
-    width: 100%;
-    border: 1px red solid;
   }
 
   #work-info-wrapper{
     border: none;
+    align-self: start;
     /*border: 1px red solid;*/
+    width: 100%;
+    /*;*/
   }
 
   #about-wrapper {
@@ -961,14 +983,14 @@ button:hover {
     padding: 4em;
     display: flex;
     flex-wrap: wrap;
-    border: 1px red solid;
+    ;
     height: 100%;
   }
 
   #bio {
     margin: 0em;
     padding: 0em;
-    /*border: 1px red solid;*/
+    /*;*/
   }
 
   #bio-text {
@@ -976,7 +998,7 @@ button:hover {
   }
 
   #about-wrapper p {
-    /*border: 1px red solid;*/
+    /*;*/
   }
 
   #bio-pic-container {  
@@ -1010,7 +1032,7 @@ button:hover {
     flex-wrap: wrap;
     width: 100%;
     margin: 0em;
-    /*border: 1px red solid;*/
+    /*;*/
     
   }
 
@@ -1021,7 +1043,7 @@ button:hover {
   #skill-icons {
     justify-self: center;
     justify-content: center;
-    /*border: 1px red solid;*/
+    /*;*/
     width: 100%;
   }
 
@@ -1035,7 +1057,7 @@ button:hover {
     height: 100vh;
     flex-wrap: wrap;
     justify-items: center;
-    border: 1px red solid;
+    ;
   }
 }
 
@@ -1052,7 +1074,7 @@ button:hover {
 
   #nav ul {
     font-size: 1.5em;
-    /*border: 1px red solid;*/
+    /*;*/
   }
 
   .arrow {
@@ -1086,7 +1108,7 @@ button:hover {
 
   #skill-wrapper{
     width: 100%;
-    /*border: 1px red solid;*/
+    /*;*/
   }
 }
 
@@ -1156,7 +1178,7 @@ button:hover {
 
   #nav {
     font-size: 1em;
-    /*border: 1px red solid;*/
+    /*;*/
   }
 
   .arrow {
@@ -1190,7 +1212,7 @@ button:hover {
     display:flex;
     padding: 0;
     font-size: 1.5em;
-    /*border: 1px red solid;*/
+    /*;*/
   }
 
   .arrow {

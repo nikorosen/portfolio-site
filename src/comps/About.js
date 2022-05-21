@@ -45,11 +45,11 @@ const Bio = () => {
       <h2>/* about */</h2>
       <Bio/>
       <div id="bio-pic-container">
-      <p>&#60;img src="</p>
+      {/* <p>&#60;img src="</p> */}
       <div id="bio-pic">
       <img src={bioPic}></img>
       {/*<div id="pic-border"></div>*/}
-      </div><p style={{textAlign: 'end'}}>"/></p>
+      </div>{/* <p style={{textAlign: 'end'}}>"/></p> */}
       </div>
       
       <div id="skill-wrapper">

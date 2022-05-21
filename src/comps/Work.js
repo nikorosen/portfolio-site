@@ -11,62 +11,114 @@ import nani from '../assets/nani.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltLeft, faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons'
 
-import donut from '../assets/donut48.glb'
-import helicopter from '../assets/helicopter3/scene.glb';
-import helicopterTexture from '../assets/helicopter/textures/Material_baseColor.png';
-import mic from '../assets/microphone_gxl_066_bafhcteks/scene.gltf'
-import car from '../assets/mc-laren/source/McLaren.glb'
-import present from '../assets/simple_present/scene.gltf'
-import fish from '../assets/fish_low_poly/scene.gltf'
-import plane from '../assets/airplane_copy.gltf'
+import laptop from '../assets/laptop.glb'
+import airtime from '../assets/airtime.glb'
+import telsim from '../assets/telsim.glb'
+import coralvr from '../assets/coralvr.glb'
+import rod from '../assets/rod.glb'
+import discord from '../assets/discord.glb'
+import issuetracker from '../assets/issuetracker.glb'
+import librarydbms from '../assets/librarydbms.glb'
+import portfolio from '../assets/portfolio.glb'
+import ig from '../assets/ig.glb'
+
+import { AmbientLight } from 'three';
 
 const Model = (props) => {
-    const model = React.useRef();
+    const modelRef = React.useRef();
   
     useFrame(({ clock }) => {
       //model.current.rotation.z = clock.getElapsedTime() * 0.1
       //model.current.rotation.x = clock.getElapsedTime() * 0.3
-      model.current.rotation.y = clock.getElapsedTime() * 0.3     
-    })
+      modelRef.current.rotation.y = clock.getElapsedTime() * -.025;
+    });
   
     useEffect(() => {
   
     }, [ props.workSelected ])
   
-    let renderer = new THREE.WebGLRenderer();
-    renderer.outputEncoding = THREE.sRGBEncoding;
+    //let renderer = new THREE.WebGLRenderer();
+    //renderer.outputEncoding = THREE.sRGBEncoding;
 
+    //const scene = new THREE.Scene(); 
+    //const models = [laptop, airtime, telsim];
+    //const scenes = [];
+  /*   var loader = new GLTFLoader();
 
-    
-    const scene = new THREE.Scene(); 
-    
-    var loader = new GLTFLoader();
-    loader.load(helicopter, (gltf) => {
-        gltf.scene.scale.set(0.03, 0.03, 0.03);
+    for (let i = 0; i < models.length; i++) {
+    loader.load(models[i], (gltf) => {
+        //gltf.scene.scale.set(0.7, 0.7, 0.7);
         var object = gltf.scene;
 
-      object.traverse((node) => {
-        if (!node.isMesh) return;
-        node.material.wireframe = true;
-        node.material.wireframeLinewidth = 0.1;
-      });
+      // object.traverse((node) => {
+      //   if (!node.isMesh) return;
+      //   node.material.wireframe = true;
+      //   node.material.wireframeLinewidth = 0.1;
+      // });
       
-      scene.add(object);
-  }, function ( error ) {
+        let scene = new THREE.Scene();
+        scene.add(object)
+        scenes.push(scene);
+      });
+    } */
 
-    console.log(error);
+    const createScene = (model) => {
+      var loader = new GLTFLoader();
+      const scene = new THREE.Scene(); 
 
-});
+      loader.load(model, (gltf) => {
+        //gltf.scene.scale.set(0.7, 0.7, 0.7);
+          var object = gltf.scene;
+
+      // object.traverse((node) => {
+      //   if (!node.isMesh) return;
+      //   node.material.wireframe = true;
+      //   node.material.wireframeLinewidth = 0.1;
+      // });
+      
+        //let scene = new THREE.Scene();
+        scene.add(object);
+        //scenes.push(scene);
+      });
+
+      return scene
+    }
   
     return <group>
-      { (props.selectedWork === 'FishTank2021') ? 
-      <mesh ref={model}>
-        <meshNormalMaterial />
-         <boxBufferGeometry args={[0.2, 0.2, 0.2]} /> 
-      </mesh> :
-      (props.selectedWork === 'AirtimeHelicopters') ?
-      <primitive ref={model} object={scene}/> : 
-      <mesh ref={model}>
+      { 
+      (props.work[props.workIndex]['title'] === 'FishTank2021') ? 
+      <primitive ref={modelRef} object={createScene(laptop)}/>  :
+      
+      (props.work[props.workIndex]['title'] === 'Airtime Helicopters') ?
+      <primitive ref={modelRef} object={createScene(airtime)}/>  :
+
+      (props.work[props.workIndex]['title'] === 'TELSIM') ?
+      <primitive ref={modelRef} object={createScene(telsim)}/>  :
+
+      (props.work[props.workIndex]['title'] === 'Coral VR') ? 
+      <primitive ref={modelRef} object={createScene(coralvr)}/>  :
+      
+      (props.work[props.workIndex]['title'] === 'ROD VR') ?
+      <primitive ref={modelRef} object={createScene(rod)}/>  :
+
+      (props.work[props.workIndex]['title'] === 'Steezy3000') ?
+      <primitive ref={modelRef} object={createScene(discord)}/>  :
+
+      (props.work[props.workIndex]['title'] === 'Edwin H. Mo’okini Library asset management system') ? 
+      <primitive ref={modelRef} object={createScene(librarydbms)}/>  :
+      
+      (props.work[props.workIndex]['title'] === 'Issue Tracker') ?
+      <primitive ref={modelRef} object={createScene(issuetracker)}/>  :
+
+      (props.work[props.workIndex]['title'] === 'Portfolio') ?
+      <primitive ref={modelRef} object={createScene(portfolio)}/>  :
+
+      (props.work[props.workIndex]['title'] === 'InstaScraper') ?
+      <primitive ref={modelRef} object={createScene(ig)}/>  :
+      
+      
+      
+      <mesh ref={modelRef}>
         <meshNormalMaterial />
          <boxBufferGeometry args={[0.2, 0.3, 0.1]} /> 
       </mesh> }
@@ -103,7 +155,7 @@ const Work = (props) => {
         tech: "Python3, Git", 
         url: logo2 },
 
-        { title: "CoralVR",
+        { title: "Coral VR",
           desc: `Utilized Unreal Engine and C++ in the development of CoralVR, a collaborative data visualization project that allows for virtual reality interaction of 3D surveys of Hawaiian coral reef sites.`,
           role: "Software Developer", 
           tech: "C++, Unreal Engine, Git"}, 
@@ -144,80 +196,6 @@ const Work = (props) => {
       tech: "JavaScript, Node.js, React, Figma", 
       url: logo2 }     
 ];
-  
-  
-  /*
-    let work = { 
-      FishTank2021 : 
-        { title: "FishTank2021",
-          role: 'UI/UX Designer', 
-          desc: 
-          `➤ Designed and developed a single page web app for a children's design competition \n
-          ➤ Communicated with a team of community leaders to define and implement requirement\n 
-          ➤ Developed FishTank 2021 branding materials\n
-          ➤ Drafted and implemented design prototypes using Figma\n`, 
-          tech: "Figma, Photoshop, WordPress", 
-          projectUrl: "",
-          modelUrl: nani },
-      AirtimeHelicopters :
-        { title: "Airtime Helicopters",
-          role: "UI/UX Designer",
-          desc: `➤ Use Adobe Creative suite to develop brand content and curate sales materials for clients.
-          ➤ Maintain VPS hosting instances and site security.
-          ➤ Develop modules to generate and organize sales pages through WordPress.`, 
-          tech: "Figma, Photoshop, WordPress, Vultr VPS", 
-          url: logo2 },
-      TELSIM :
-        { title: "TELSIM",
-          desc: `➤ Developed a simulator in Python 3 that models the Subaru telescope control system to test observation procedures and train system operators, greatly reducing operating costs.
-          ➤ Collaborated with an international team of software engineers, astronomers and operators to identify and implement key software components.
-          `,
-          role: "Software Developer", 
-          tech: "Python3, Git", 
-          url: logo2 },
-      CoralVR :
-          { title: "CoralVR",
-            desc: `Utilized Unreal Engine and C++ in the development of CoralVR, a collaborative data visualization project that allows for virtual reality interaction of 3D surveys of Hawaiian coral reef sites.`,
-            role: "Software Developer", 
-            tech: "C++, Unreal Engine, Git", 
-            url: logo2 },
-      RODVR :
-            { title: "ROD VR",
-              desc: `Developed a C#/Unity application for Rapid 'Ohi'a Death (ROD) outreach, which was presented to community leaders, scientists, and legislators at the 2018 ‘Ike Wai annual conference at UH Manoa.`,
-              role: "Software Developer", 
-              tech: "C#, Unity3D, Git", 
-              url: logo2 },
-      InstaScraper :
-              { title: "InstaScraper",
-                desc: `Developed an application to analyze competitor profiles for high-engagement media and download them for market research`,
-                role: "Software Developer", 
-                tech: "Python3, Selenium", 
-                url: logo2 },
-      IssueTracker :
-                { title: "Issue Tracker",
-                  desc: `Built an application to track issues and project progress.`,
-                  role: "Software Developer", 
-                  tech: "C#, .NET Core, SQLServer", 
-                  url: logo2 },
-      LibraryDBMS :
-                  { title: "Edwin H. Mo’okini Library asset management system",
-                    desc: `Collaborated on a team of three to specify and implement requirements for a full-stack application using Windows, IIS, SQLServer, and .Net Framework, employing RESTful design through Razor pages`,
-                    role: "Software Developer", 
-                    tech: "C#, ASP.NET, SQLServer", 
-                    url: logo2 },
-      Steezy3000 : {
-        title: "Steezy3000",
-        desc: `Built a custom discord.js bot that manages community events in my music production server`,
-        role: "Software Developer", 
-        tech: "JavaScript, Node.js", 
-        url: logo2 },
-      Portfolio : {
-        title: "Portfolio",
-        desc: `This site! Custom built to showcase my current and past work as a frontend developer and UI/UX Designer`,
-        role: "UI/UX Designer, Software Developer", 
-        tech: "JavaScript, Node.js, React, Figma", 
-        url: logo2 }     
-    } */
   
     useEffect(() => {
       Aos.init({ duration: 2000});
@@ -309,15 +287,20 @@ const WorkDisplay = (props) => {
       </div><div id="work-display" > 
         {/*<img src={props.work[props.selectedWork]}></img>*/}
 
-        <p style={{textAlign:"start"}}>&#60;Canvas model="{props.selectedWork}"></p>
-        <Canvas camera = {{position:[5,18,23], fov: 1}}>
+        {/* <p style={{textAlign:"start"}}>&#60;Canvas model="{props.work[props.workIndex]['title']}"></p> */}
+        <Canvas camera = {{position:[5,15,-30], fov: 1.25}}>
           <OrbitControls enableZoom={false}/>
-          {<pointLight position={[10, 10, 10]} intensity={1.3} />}
+          {<pointLight position={[10, 10, -10]} intensity={.5}/>} 
+
+          {<ambientLight intensity={0.3} />}
+
           <Suspense fallback={null}>
-            <Model work={props.work} selectedWork={props.selectedWork}></Model>
+            <Model 
+              work={props.work} 
+              workIndex={props.workIndex}></Model>
           </Suspense>
         </Canvas>
-        <p style={{textAlign:"start"}}>&#60;/Canvas></p>
+        {/* <p style={{textAlign:"start"}}>&#60;/Canvas></p> */}
         </div>
 
       </div>
@@ -348,6 +331,10 @@ const WorkDisplay = (props) => {
       
     
       <div id='work-info-wrapper'>
+      <div id="selector"> 
+          <button id="selector-left" onClick={e => handleClick(e)}>🠐</button>
+          <button id="selector-right" onClick={e => handleClick(e)}>🠒</button> 
+        </div>
       <ul><li><h4>title :</h4>
       <p>{props.work[props.workIndex]['title']}</p> </li>
       <li><h4>role :</h4>
@@ -360,10 +347,8 @@ const WorkDisplay = (props) => {
       <p> <a href={props.work[props.workIndex]['projectUrl']}>View project</a> 
       </p></li>
       </ul>
-      <div id="selector"> 
-          <button id="selector-left" onClick={e => handleClick(e)}>🠐</button>
-          <button id="selector-right" onClick={e => handleClick(e)}>🠒</button> 
-        </div>
+      
+      
         
       </div>
   </div>
