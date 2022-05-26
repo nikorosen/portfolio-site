@@ -6,13 +6,13 @@ const Home = (props) => {
       
       <Title titleSize={props.titleSize}/>
       
-      <div className="sidebar">
+      {/* <div className="sidebar">
         <div style={{backgroundColor:"var(--primary-color)"}} className="sidebar-box"></div>
         <div style={{backgroundColor:"var(--secondary-text-color)"}} className="sidebar-box"></div>
         <div style={{backgroundColor:"var(--tertiary-text-color)"}} className="sidebar-box"></div>
         <div style={{backgroundColor:"var(--primary-text-color)"}} className="sidebar-box"></div>
         <div style={{backgroundColor:"var(--accent-color)"}} className="sidebar-box"></div>
-      </div>
+      </div> */}
       
       <p 
         id="scroll-down" 

@@ -28,7 +28,7 @@ const Bio = () => {
     return <div id="bio">
         <h3>Bio :</h3>
         <div className='header-line'/>
-        <p>{bio}</p>
+        <p id="bio-text">{bio}</p>
     </div>
   }
   
@@ -40,16 +40,16 @@ const Bio = () => {
   
     }, []);
 
-   return <div data-aos="fade-left" id="about-wrapper">
-      <a id="about"></a>
+   return <div id="about">
       <h2>/* about */</h2>
-      <Bio/>
-      <div id="bio-pic-container">
+      <div className="flex-container"><Bio/>
+        <div id="bio-pic-container">
       {/* <p>&#60;img src="</p> */}
-      <div id="bio-pic">
-      <img src={bioPic}></img>
+            <div id="bio-pic">
+            <img src={bioPic}></img>
       {/*<div id="pic-border"></div>*/}
-      </div>{/* <p style={{textAlign: 'end'}}>"/></p> */}
+          </div>{/* <p style={{textAlign: 'end'}}>"/></p> */}
+        </div>
       </div>
       
       <div id="skill-wrapper">

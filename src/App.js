@@ -12,6 +12,10 @@ import Work from './comps/Work.js';
 import About from './comps/About.js';
 import Home from './comps/Home.js';
 import Contact from './comps/Contact.js'
+import Socials from './comps/Socials';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 
 
@@ -41,16 +45,17 @@ function App() {
   //
   const handleScroll = () => {
     let scrollPercent = getScrollPercent();
-    let newArrowHeight = scrollPercent*0.6;
+    let newArrowHeight = scrollPercent*0.4;
     let newArrowRotation = scale(scrollPercent, 80, 100, 0, -90);
-    let newArrowPosition = 94.5 - scrollPercent*.79;
+    let newArrowPosition = 94.5 - scrollPercent*.6;
 
-    //setTitleSize(12 + scrollPercent()*0.05)
+    //setTitleSize(12 + scrollPercent*0.05)
     setArrowPosition(newArrowPosition);
     setArrowHeight(newArrowHeight);
 
-    if (scrollPercent >= 80)
+    if (scrollPercent >= 80) 
       setArrowRotation(newArrowRotation);
+
     else if (arrowRotation != 0)
       setArrowRotation(0);
 
@@ -87,6 +92,14 @@ function App() {
         className="arrow">
       </div>
     
+      <div className='side-info'>
+        <ul>
+        <li>nickolas.rosenberg@gmail.com</li>
+        <li><a href="https://www.linkedin.com/in/nickolas-rosenberg/"><FontAwesomeIcon className="icon"  icon={faLinkedin}/></a></li>
+        <li><a href="https://github.com/nikorosen"><FontAwesomeIcon className="icon" icon={faGithub}/></a></li>
+        </ul>
+      </div>
+
       {/*console.log('titleSize on app render: ' + titleSize)*/}
 
       <Nav/>
@@ -113,8 +126,9 @@ function App() {
       <About 
         display={selectedAboutDisplay}/>
 
-      <Contact ref={sectionRef}/>
+      <Contact/>
       
+      <div style={{paddingBottom:"3vh"}}>2022 -- Designed and Built by Niko Rosenberg</div>
     </div>
   );
 }
