@@ -7,14 +7,15 @@ const Contact = () => {
       Aos.init({ duration: 2000});
     }, []);
   
-    return <div /* data-aos="fade-right" */  id="contact">
+    return <div data-aos="fade-left"  id="contact">
       <h2>/* Contact */</h2>
       
       <div id="cta">
-        <h3 style={{width: '100%'}}>letsConnect()</h3>
-        {/* <div  className='header-line'/> */}
+        <h3>letsConnect()</h3>
         <p>“ I’m open to any interesting opportunity, let’s get in touch! ”</p>
-        <a class="link-button" href="https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap" target="_blank">email()</a>
+        <div style={{width: '100%', display:'flex', justifyContent: 'center'}}>
+          <a class="link-button" href="mailto: nickolas.rosenberg@gmail.com" target="_blank">.email()</a>
+        </div>
       </div>
 
     </div>

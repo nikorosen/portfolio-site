@@ -14,9 +14,28 @@ import icon_dotnet from '../assets/icons/dotnet.png';
 import icon_html from '../assets/icons/html.png';
 import icon_css from '../assets/icons/css.png';
 import icon_vscode from '../assets/icons/vscode.png';
+import icon_figma from '../assets/icons/figma.png';
+import icon_photoshop from '../assets/icons/photoshop.png';
+import icon_wordpress from '../assets/icons/wordpress.png';
+
 import bioPic from '../assets/bio-pic.jpg';
-import logo2 from '../assets/logo192.png'
-import nani from '../assets/nani.jpg'
+
+const icons = [
+  icon_js,
+  icon_html,
+  icon_css,
+  icon_react,
+  icon_node,
+  icon_mongodb,
+  icon_python,
+  icon_cs,
+  icon_cpp,
+  icon_dotnet,
+  icon_wordpress,
+  icon_figma,
+  icon_photoshop,
+  icon_vscode,
+]
 
 const Bio = () => {
     const bio = `” Hey, I’m Niko. 
@@ -36,11 +55,9 @@ const Bio = () => {
    
     useEffect(() => {
       Aos.init({ duration: 2000});
-  
-  
     }, []);
 
-   return <div id="about">
+   return <div id="about" data-aos="fade-right">
       <h2>/* about */</h2>
       <div className="flex-container"><Bio/>
         <div id="bio-pic-container">
@@ -56,62 +73,11 @@ const Bio = () => {
       <h3>Some things I do : </h3>
       <div className='header-line'/>
       <ul id="skill-icons">
-        <li><img src={icon_js}></img></li>
-        <li><img src={icon_html}></img></li>
-        <li><img src={icon_css}></img></li>
-        <li><img src={icon_react}></img></li>
-        <li><img src={icon_node}></img></li>
-        <li><img src={icon_express}></img></li>
-        <li><img src={icon_mongodb}></img></li>
-        <li><img src={icon_python}></img></li>
-        <li><img src={icon_cs}></img></li>
-        <li><img src={icon_cpp}></img></li>
-        <li><img src={icon_dotnet}></img></li>
-        <li><img src={icon_vscode}></img></li>
+        {icons.map( icon => <li key={icon}><img alt={icon} src={icon}/></li> )}
       </ul>
       </div>
       
       </div>
   }
-
-
-  /*
-  const Skills = (props) => {
-
-    let skills = {
-      "JavaScript": {
-        url: nani 
-      },
-      "React": {
-        url: logo2
-      } };
-  
-    return <div id="skill-wrapper">
-      <SkillSelector skills={skills} setSelectedSkill={props.setSelectedSkill} />
-      <SkillDisplay skills={skills} selectedSkill={props.selectedSkill}/>
-    </div>
-  }
-  
-  const SkillSelector = (props) => {
-    return <div id="skill-selector">
-        <h3>skills: [</h3>
-        <ul>
-          { Object.keys(props.skills).map( key => { return <li 
-              onMouseOver={(e) => {
-              //console.log(e.target.id)
-              props.setSelectedSkill(e.target.id) } }
-  
-              id={key}> {key} </li> }) }
-        </ul>
-        <p>],</p>
-      </div>
-  }
-  
-  const SkillDisplay = (props) => {
-  
-    // {<img src={props.skills[props.selectedSkill]['url']}></img>}
-  
-    return <div id="skill-display"><img src={icon_js}></img></div>
-  }*/
 
   export default About;
