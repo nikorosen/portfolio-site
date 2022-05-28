@@ -305,10 +305,10 @@ li:hover, a:hover {
   display: block;
   position: relative;
   top: 100%;
-  right: 2px;
-  width: 5px; 
-  height: 10px; 
-  background: var(--accent-color);
+  right: .28em;
+  width: .7em; 
+  height: 1.25em; 
+  background: var(--secondary-text-color);
   border-radius: 1em;
 
   animation: rotate 1s alternate infinite ease-in-out;
@@ -321,9 +321,9 @@ li:hover, a:hover {
       display: block;
       position: relative;
       top: 98%;
-      right: 4.5px;
-      width: 10px; 
-      height: 10px; 
+      right: .66em;
+      width: 1.5em; 
+      height: 1.5em; 
       background: var(--primary-text-color);
       border-radius: 1em;
       box-shadow: 0px 0px 50px white;
@@ -622,6 +622,7 @@ button:hover {
  grid-area: pic;
  transform: rotate(45deg);
  justify-content: center;
+ align-content: center;
  align-self: center;
  width: 50%;
 
@@ -631,7 +632,7 @@ button:hover {
   align-self: center;
   justify-self: center;
   width: 45%;
-  
+
   /* transform: rotate(45deg); */
   border-radius: 1em;
   /* animation: float 1s alternate infinite; */
@@ -760,6 +761,23 @@ button:hover {
 
   #scroll-down{
     align-self: end;
+  }
+
+  #light-bulb {
+    height: 15vh;
+  }
+
+  #light-bulb::before {
+    right: .22em;
+    width: .5em; 
+    height: .7em; 
+  }
+  
+  #light-bulb::after {
+        right: .47em;
+        width: 1em; 
+        height: 1em; 
+        top: 14.5vh;
   }
 
   .side-info {
