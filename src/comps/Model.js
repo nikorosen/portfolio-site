@@ -9,7 +9,7 @@ import laptop from '../assets/laptop.glb'
 
 const Model = (props) => {
     const modelRef = React.useRef();
-    const rotateSpeed = -0.25;
+    const rotateSpeed = -0.1;
 
     useFrame(({ clock }) => {
       modelRef.current.rotation.y = clock.getElapsedTime() * rotateSpeed;

@@ -2,6 +2,9 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import React, { useEffect } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPerson, faToolbox } from '@fortawesome/free-solid-svg-icons';
+
 import icon_js from '../assets/icons/js.png'; 
 import icon_node from '../assets/icons/node.png';
 import icon_react from '../assets/icons/react.png';
@@ -19,22 +22,23 @@ import icon_photoshop from '../assets/icons/photoshop.png';
 import icon_wordpress from '../assets/icons/wordpress.png';
 
 import bioPic from '../assets/bio-pic.jpg';
+import face from '../assets/face.svg';
 
-const icons = [
-  icon_js,
-  icon_html,
-  icon_css,
-  icon_react,
-  icon_node,
-  icon_mongodb,
-  icon_python,
-  icon_cs,
-  icon_cpp,
-  icon_dotnet,
-  icon_wordpress,
-  icon_figma,
-  icon_photoshop,
-  icon_vscode,
+const skills = [
+  {'skill': 'js',        'icon': icon_js},
+  {'skill': 'html',      'icon':  icon_html},
+  {'skill': 'css',       'icon': icon_css},
+  {'skill': 'react',     'icon': icon_react},
+  {'skill': 'node',      'icon': icon_node},
+  {'skill': 'mongodb',   'icon': icon_mongodb},
+  {'skill': 'python',    'icon': icon_python},
+  {'skill': 'cs',        'icon':  icon_cs},
+  {'skill': 'cpp',       'icon':  icon_cpp},
+  {'skill': 'dotnet',    'icon':  icon_dotnet},
+  {'skill': 'wordpress', 'icon':  icon_wordpress},
+  {'skill': 'figma',     'icon':  icon_figma},
+  {'skill': 'photoshop', 'icon':  icon_photoshop},
+  {'skill': 'vscode',    'icon':  icon_vscode}
 ]
 
 const Bio = () => {
@@ -42,10 +46,10 @@ const Bio = () => {
       I’m a front-end developer with a passion for building compelling designs.
       I recevied my computer science degree from the University of Hawai'i 
       in 2020, and now reside in San Diego, CA where I primarily do freelance marketing and front-end development. 
-      Addicted to programming, design and music.“`
+      Addicted to tech, surfing and music.“`
     
     return <div id="bio">
-        <h3>Bio :</h3>
+        <h3><FontAwesomeIcon icon={faPerson}/> bio :</h3>
         <div className='header-line'/>
         <p id="bio-text">{bio}</p>
     </div>
@@ -57,25 +61,33 @@ const Bio = () => {
       Aos.init({ duration: 2000});
     }, []);
 
-   return <div id="about" data-aos="fade-right">
+   return <div id="about" >
       <h2>/* about */</h2>
-      <div className="flex-container"><Bio/>
+      <div className="flex-container" >
+        <div style={{display: 'flex', flexFlow: 'row wrap', rowGap : '2em', width: '100%'}}>
+          <Bio/>
+          <div id="skill-wrapper">
+            <h3><FontAwesomeIcon icon={faToolbox}/> toolbox : </h3>
+            <div className='header-line'/>
+              {/* <ul style={{display: 'flex', flexFlow: 'row wrap'}} >
+              [{skills.map( skill => <li key={skill['skill']}> {skill['skill']},  </li> )}]
+              </ul> */}
+              <p style={{width: "100%"}}>" Here are some things I've been using lately."</p>
+            <ul id="skill-icons">
+              
+              {skills.map( skill => <li><img alt={skill['skill']} src={skill['icon']}/></li> )}
+            </ul>
+          </div>
+        </div>
+      
         <div id="bio-pic-container">
-      {/* <p>&#60;img src="</p> */}
             <div id="bio-pic">
-            <img src={bioPic}></img>
-      {/*<div id="pic-border"></div>*/}
-          </div>{/* <p style={{textAlign: 'end'}}>"/></p> */}
+            <img  src={bioPic}></img>
+          </div>
         </div>
       </div>
       
-      <div id="skill-wrapper">
-      <h3>Some things I do : </h3>
-      <div className='header-line'/>
-      <ul id="skill-icons">
-        {icons.map( icon => <li key={icon}><img alt={icon} src={icon}/></li> )}
-      </ul>
-      </div>
+      
       
       </div>
   }

@@ -5,32 +5,48 @@ import React, { useEffect, Suspense} from 'react';
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+import { faLink, faPen, faFileCode, faUser } from "@fortawesome/free-solid-svg-icons";
+
+import airtime from "../assets/img/airtime.PNG";
+import telsim from "../assets/img/telsim.PNG";
+import fishtank from "../assets/img/fishtank.png";
+import coralvr from "../assets/img/coralvr.png";
+import dbms from "../assets/img/uh-hilo.png";
+import portfolio from "../assets/img/portfolio.PNG";
+
 import Model from './Model';
+import Selector from './Selector';
   
 const WorkSelecter = (props) => {
   
     const prevItem = React.useRef(); 
     const itemsRef = React.useRef([]);
+    let itemIndex = 0;
   
     useEffect(() => {
+
+      // init. refs
       if (prevItem.current == null) {
-      prevItem.current = document.getElementById('0');
-      prevItem.current.classList.toggle('active'); }
-      itemsRef.current = itemsRef.current.slice(0, props.work.length);
+        prevItem.current = document.getElementById('0');
+        prevItem.current.classList.toggle('active'); 
+        itemsRef.current = itemsRef.current.slice(0, props.work.length); }
+
+      // toggle 'active' class to ON on current work selection
+      // toggle 'active' class to OFF on previous work selection
+      else {
+        prevItem.current.classList.toggle('active'); 
+        prevItem.current = document.getElementById(props.workIndex);
+        itemsRef.current[props.workIndex].classList.toggle('active');
+      }
+
+      // when workIndex updates
     }, [props.workIndex, props.work]);
     
-  
-    // toggle 'active' class to ON on current work selection
-    // toggle 'active' class to OFF on previous work selection
-    const handleClick = (e, index) => {
-      if (prevItem.current !== null)
-        prevItem.current.classList.toggle('active');
-      prevItem.current = e.target;
-  
+    const handleClick = (e) => {
       props.setWorkIndex(e.target.id);
-      itemsRef.current[index].classList.toggle('active');
     }
-  
+
     return <div id="work-selector">
       <div className="flex-container">
         <ul>
@@ -65,11 +81,12 @@ const WorkDisplay = (props) => {
   
 const WorkInfo = (props) => {
 
-    const {title, desc, role, tech, url} = props.work[props.workIndex];
+    const {title, desc, role, tech, url, img} = props.work[props.workIndex];
 
     return <div id="work-info">    
-      <h3 class="work-heading">[ <span className='work-role'> {role} </span>] {title} </h3> 
-
+      
+      <h3 style={{width:"100%"}} class="work-heading"> <FontAwesomeIcon icon={faUser}/> role : [ <span className='work-role'> {role} </span>] {title} </h3> 
+      
       <div className="flex-container">
         <WorkSelecter 
           work={props.work} 
@@ -77,33 +94,45 @@ const WorkInfo = (props) => {
           setWorkIndex={props.setWorkIndex}
           />   
   
-        <ul>
-          <li><h4>desc :</h4>
-            <ul>
-              {desc.map(i => <li> {i} </li>)}   
+        <ul className="work-info-grid">
+          <li >{/* <a id="work-info-img" target="_blank" href={url}><img src={img}></img></a> */}
+          <Selector 
+            setWorkIndex={props.setWorkIndex}
+            workIndex={props.workIndex}
+            work={props.work}
+            />
+          </li>
+          <li id="work-info-desc"><h4><FontAwesomeIcon icon={faPen}/> desc : </h4>
+          <ul>
+              {desc.map(i =>  <li> {i} </li>  )}  
             </ul>
           </li>
+          <li style={{width: "100%"}}><h4><FontAwesomeIcon icon={faFileCode}/> tech : </h4> 
+                [ {tech} ]
+              </li>
+          
+          <li><h4><FontAwesomeIcon icon={faLink}/> url :</h4>
+                <a id="project-url" target="_blank" href={url}><u>https://viewProject() </u></a>
+              </li>
 
-          <li><h4>tech : </h4> 
-            {tech}
-          </li>
+              
+          
 
-          <li><h4>url :</h4>
-            <a href={url}>View project</a>
-          </li>
+          
+          
         </ul>
 
       </div>   
     </div>
   }
 
-  const Work = (props) => {
+  /* const Work = (props) => {
 
     let work = [
         { title: "NexTech Hawai'i",
           role: 'UI/UX Designer', 
           desc: [
-          `Developed a information portal for a children's design competition.`,
+          `Developed an information portal for a children's design competition.`,
           `Communicated with a team of community leaders to define and implement requirements.`, 
           `Drafted and implemented designs using Figma.` ], 
           tech: "Figma, WordPress, Photoshop", 
@@ -169,14 +198,69 @@ const WorkInfo = (props) => {
         role: "UI/UX Designer, Developer", 
         tech: "JavaScript, Node.js, React, Figma, Git", 
         url: "https://github.com/nikorosen/portfolio-site" }     
+  ]; */
+
+  const Work = (props) => {
+
+    let work = [
+        { title: "NexTech Hawai'i",
+          role: 'UI/UX Designer', 
+          desc: [
+          `Developed an information portal for a non-profit organization.`,
+          `Communicated with a team of community leaders to define and implement requirements.`, 
+          `Drafted and implemented designs using Figma.` ], 
+          tech: "Figma, WordPress, Photoshop", 
+          url: "https://www.figma.com/file/P7lplQNcjMqdeqHU5x2GD5/FISHTANK-2021?node-id=0%3A1",
+          img: fishtank },
+  
+        { title: "Airtime Helicopters",
+          role: "UI/UX Designer",
+          desc: [`Maintain VPS hosting instances and site security.`,
+          `Develop modules to generate and organize sales pages through WordPress.`,
+          `Use Adobe Creative suite to develop brand content and curate sales materials for clients.`
+          ], 
+          tech: "WordPress, Figma, PhotoShop, Vultr VPS", 
+          url: "https://airtimehelicopters.com/",
+          img: airtime },
+  
+        { title: "National Astronomical Observatory of Japan ",
+          desc: [`Developed a simulator that models the Subaru telescope control system.`,
+          `Reduced operating costs by providing a script testing platform.`,
+          `Collaborated with an international team of software engineers, astronomers and operators to identify and implement key software components.`],
+          role: "Developer", 
+          tech: "Python3, Git", 
+          url: "https://docs.google.com/presentation/d/1cjdq2_DJCJNNmM5rtXRaNXmBK2viIjv00BnR1j5upsw/edit#slide=id.p",
+          img: telsim },
+  
+          { title: "UH Hilo, Coral VR",
+            desc: [`Developed modules for Coral VR, a collaborative data visualization project that allows for virtual reality interaction of 3D surveys of Hawaiian coral reef sites.`],
+            role: "Developer", 
+      tech: "C++, Unreal Engine, Git",
+      url: "https://drive.google.com/file/d/1WLk4CIkcFjqKDSiCYLCTXgK7Yl9Bt-W_/view",
+      img: coralvr    }, 
+  
+              { title: "UH Hilo, Library DBMS",
+              desc: [`Collaborated on a team of three to specify and implement requirements for a full-stack application using Windows, IIS, SQLServer, and .Net Framework, employing RESTful design through Razor pages.`],
+              role: "Developer", 
+              tech: "C#, ASP.NET, SQLServer, Git", 
+              url: "https://github.com/nikorosen/library-dbms",
+            img: dbms },
+                
+  {
+        title: "Personal, Portfolio",
+        desc: [`This site! Custom built to showcase my current and past work as a developer and designer.`],
+        role: "UI/UX Designer, Developer", 
+        tech: "JavaScript, Node.js, React, Figma, Git", 
+        url: "https://github.com/nikorosen/portfolio-site",
+      img: portfolio }     
   ];
     
       useEffect(() => {
         Aos.init({ duration: 2000});
       }, []);
     
-      return <div id='work' data-aos="fade-up">
-          <h2>/* work */</h2>
+      return <div id='work'>
+          <h2>/* selected work */</h2>
           
           <div className="flex-container work-container">
               <div className="flex-container">

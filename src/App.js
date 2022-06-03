@@ -21,7 +21,7 @@ function App() {
   
   const arrowPositionSpeed = 0.65;
   const arrowHeightSpeed = 0.4;
-  const arrowInitPosition = 94.5;
+  const arrowInitPosition = 95;
 
   const [arrowHeight, setArrowHeight] = useState(0);
   const [arrowPosition, setArrowPosition] = useState(arrowInitPosition);
@@ -123,7 +123,7 @@ function App() {
       <About />
       <Contact/>
       
-      <div style={{paddingBottom:"3vh"}}>2022 -- Designed and Built by Niko Rosenberg</div>
+      <div style={{paddingBottom:"3vh"}}> <a className="scroll-link" href="#home">goToTop() 🠕</a> <br></br><br></br> 2022 -- Designed and Built by Niko Rosenberg</div>
     </div>
   );
 }

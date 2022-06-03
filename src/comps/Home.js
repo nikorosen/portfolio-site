@@ -5,11 +5,12 @@ const Home = (props) => {
       
       <Title titleSize={props.titleSize}/>
       
-      <p 
+      <a href="#work"
         id="scroll-down" 
+        className="scroll-link" 
         style={{gridArea: "scrolldown"}}>
           scrollDown()
-      </p>
+      </a>
 
     </div>
   }
