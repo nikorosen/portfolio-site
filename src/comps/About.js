@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPerson, faToolbox } from '@fortawesome/free-solid-svg-icons';
 
 import icon_js from '../assets/icons/js.png'; 
+import icon_ts from '../assets/icons/ts.png'; 
 import icon_node from '../assets/icons/node.png';
 import icon_react from '../assets/icons/react.png';
 import icon_python from '../assets/icons/python.png';
@@ -26,8 +27,10 @@ import face from '../assets/face.svg';
 
 const skills = [
   {'skill': 'js',        'icon': icon_js},
+  
   {'skill': 'html',      'icon':  icon_html},
   {'skill': 'css',       'icon': icon_css},
+  {'skill': 'ts',        'icon':  icon_ts},
   {'skill': 'react',     'icon': icon_react},
   {'skill': 'node',      'icon': icon_node},
   {'skill': 'mongodb',   'icon': icon_mongodb},
@@ -38,14 +41,13 @@ const skills = [
   {'skill': 'wordpress', 'icon':  icon_wordpress},
   {'skill': 'figma',     'icon':  icon_figma},
   {'skill': 'photoshop', 'icon':  icon_photoshop},
-  {'skill': 'vscode',    'icon':  icon_vscode}
 ]
 
 const Bio = () => {
     const bio = `” Hey, I’m Niko. 
       I’m a front-end developer with a passion for building compelling designs.
       I recevied my computer science degree from the University of Hawai'i 
-      in 2020, and now reside in San Diego, CA where I primarily do freelance marketing and front-end development. 
+      in 2020, and now reside in San Diego, CA where I primarily do freelance front-end development and marketing. 
       Addicted to tech, surfing and music.“`
     
     return <div id="bio">
@@ -75,14 +77,14 @@ const Bio = () => {
               <p style={{width: "100%"}}>" Here are some things I've been using lately."</p>
             <ul id="skill-icons">
               
-              {skills.map( skill => <li><img alt={skill['skill']} src={skill['icon']}/></li> )}
+              {skills.map( skill => <li><img title={skill['skill']} alt={skill['skill']} src={skill['icon']}/></li> )}
             </ul>
           </div>
         </div>
       
         <div id="bio-pic-container">
             <div id="bio-pic">
-            <img  src={bioPic}></img>
+            <img alt="bio image" src={bioPic}></img>
           </div>
         </div>
       </div>

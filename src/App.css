@@ -112,12 +112,8 @@ li:hover, a:hover {
 .work-info-grid {
   display: flex;
   flex-flow: row wrap;
-  height: 70vh;
+  height: 60vh;
   padding-top: 1em;
-}
-
-.work-info-grid {
-  display: flex;
   align-content: start;
 }
 
@@ -175,7 +171,6 @@ li:hover, a:hover {
   position: fixed;
  
   bottom: 10vh;
-  right: -15vw;
   transform: rotate(90deg); 
   animation: side-info-in 1s ease-in-out;
 }
@@ -407,7 +402,7 @@ li:hover, a:hover {
   justify-items: center;
   align-content: start;
   text-align: start;
-  margin: 0 0 0vh 0;
+  margin: 0 0 20vh 0;
 
   
 }
@@ -547,7 +542,7 @@ li:hover, a:hover {
  
   transition: filter .5s ease-in-out, transform .5s ease-in-out, box-shadow .5s ease-in-out;
 
-  transform: perspective(1500px) rotateY(0deg);  
+  transform: perspective(1500px) rotateY(20deg);  
 }
 
 @keyframes idle-work-info-img {
@@ -769,7 +764,7 @@ button:hover {
   margin: 0.5em 1em -1em 0.5em;
   filter: grayscale(1);
   border: 1.5px var(--primary-text-color) solid;
-  transform: perspective(1500px) rotateY(0deg);
+  transform: perspective(1500px) rotateY(-15deg);
 
   transition: transform .5s ease-in-out, filter .5s ease-in-out, box-shadow .5s ease-in-out;
   
@@ -1278,7 +1273,7 @@ button:hover {
   }
 
   .side-info {
-    right: -20vw;
+    right: -12vw;
   }
 
  

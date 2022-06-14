@@ -1,4 +1,4 @@
-import resume from '../assets/nickolas-rosenberg-resume-full.pdf'
+import resume from '../assets/niko-rosenberg-resume.pdf'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faFloppyDisk, faFileArrowDown } from '@fortawesome/free-solid-svg-icons';

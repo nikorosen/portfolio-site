@@ -15,6 +15,7 @@ import Contact from './comps/Contact.js'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [workIndex, setWorkIndex] = useState(0);
@@ -60,12 +61,6 @@ function App() {
 
     else if (arrowRotation != 0)
       setArrowRotation(0);
-
-    //console.log("old height:" + arrowHeight);
-    //console.log("new height:" + newArrowHeight);
-    //console.log("arrow position: "+ arrowPosition);
-    //console.log("scroll percent:" +scrollPercent());
-    //console.log('titlesize: ' +titleSize);
   }
 
   // helper function to scale parameters relative to scroll position
@@ -92,13 +87,11 @@ function App() {
     
       <div className='side-info'>
         <ul>
-        <li><a href="mailto: nickolas.rosenberg@gmail.com">nickolas.rosenberg@gmail.com</a></li>
+        <li><a href="mailto: nickolas.rosenberg@gmail.com"><FontAwesomeIcon icon={faEnvelope} className="icon"/></a></li>
         <li><a href="https://www.linkedin.com/in/nickolas-rosenberg/"><FontAwesomeIcon className="icon"  icon={faLinkedin}/></a></li>
         <li><a href="https://github.com/nikorosen"><FontAwesomeIcon className="icon" icon={faGithub}/></a></li>
         </ul>
       </div>
-
-      {/*console.log('titleSize on app render: ' + titleSize)*/}
 
       <Nav/>
 

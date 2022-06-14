@@ -95,7 +95,7 @@ const WorkInfo = (props) => {
           />   
   
         <ul className="work-info-grid">
-          <li >{/* <a id="work-info-img" target="_blank" href={url}><img src={img}></img></a> */}
+          <li >
           <Selector 
             setWorkIndex={props.setWorkIndex}
             workIndex={props.workIndex}
@@ -204,7 +204,7 @@ const WorkInfo = (props) => {
 
     let work = [
         { title: "NexTech Hawai'i",
-          role: 'UI/UX Designer', 
+          role: 'UI Designer', 
           desc: [
           `Developed an information portal for a non-profit organization.`,
           `Communicated with a team of community leaders to define and implement requirements.`, 
@@ -214,7 +214,7 @@ const WorkInfo = (props) => {
           img: fishtank },
   
         { title: "Airtime Helicopters",
-          role: "UI/UX Designer",
+          role: "UI Designer",
           desc: [`Maintain VPS hosting instances and site security.`,
           `Develop modules to generate and organize sales pages through WordPress.`,
           `Use Adobe Creative suite to develop brand content and curate sales materials for clients.`
@@ -249,8 +249,8 @@ const WorkInfo = (props) => {
   {
         title: "Personal, Portfolio",
         desc: [`This site! Custom built to showcase my current and past work as a developer and designer.`],
-        role: "UI/UX Designer, Developer", 
-        tech: "JavaScript, Node.js, React, Figma, Git", 
+        role: "UI Designer, Developer", 
+        tech: "JavaScript, Node.js, React, three.js, Figma, Git", 
         url: "https://github.com/nikorosen/portfolio-site",
       img: portfolio }     
   ];
