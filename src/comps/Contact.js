@@ -11,7 +11,7 @@ const Contact = () => {
     }, []);
   
     return <div   id="contact">
-      <h2>/* Contact */</h2>
+      <h2>/* contact */</h2>
       
       <div id="cta">
         <h3>letsConnect()</h3>

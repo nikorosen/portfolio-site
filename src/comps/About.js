@@ -21,6 +21,7 @@ import icon_vscode from '../assets/icons/vscode.png';
 import icon_figma from '../assets/icons/figma.png';
 import icon_photoshop from '../assets/icons/photoshop.png';
 import icon_wordpress from '../assets/icons/wordpress.png';
+import icon_next from '../assets/icons/next.png';
 
 import bioPic from '../assets/bio-pic.jpg';
 import face from '../assets/face.svg';
@@ -30,10 +31,11 @@ const skills = [
   
   {'skill': 'html',      'icon':  icon_html},
   {'skill': 'css',       'icon': icon_css},
-  {'skill': 'ts',        'icon':  icon_ts},
+
   {'skill': 'react',     'icon': icon_react},
   {'skill': 'node',      'icon': icon_node},
-  {'skill': 'mongodb',   'icon': icon_mongodb},
+  {'skill': 'next',      'icon':  icon_next},
+  {'skill': 'ts',        'icon':  icon_ts},
   {'skill': 'python',    'icon': icon_python},
   {'skill': 'cs',        'icon':  icon_cs},
   {'skill': 'cpp',       'icon':  icon_cpp},
